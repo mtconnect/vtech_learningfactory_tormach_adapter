@@ -8017,6 +8017,7 @@ class mill(TormachUIBase):
                 self.button_list['zero_height_gauge'].show()
                 self.zero_height_gauge_visible = True
 
+    # TODO: This function collects data from LinuxCNC status every half second. Need to add code to format data and export to adapter.
     # called every 500 milliseconds to update various slower changing DROs and button images
     def status_periodic_500ms(self):
         if 'launch_test' in self.configdict["pathpilot"] and self.configdict["pathpilot"]["launch_test"]:
