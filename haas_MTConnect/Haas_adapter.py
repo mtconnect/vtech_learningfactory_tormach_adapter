@@ -1,4 +1,11 @@
-import threading, time, socket, sys, datetime, serial, re, requests
+import threading
+import time 
+import socket
+import sys
+import datetime
+import serial
+import re
+import requests
 
 client_counter = 0
 client_list = []
