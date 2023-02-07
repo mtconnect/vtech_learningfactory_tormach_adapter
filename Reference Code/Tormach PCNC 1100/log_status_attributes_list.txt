@@ -1,0 +1,24 @@
+The following log is a list of attributes attached to the mill.status object
+This was generated with the following code:
+
+'''
+    # called every 500 milliseconds to update various slower changing DROs and button images
+    def status_periodic_500ms(self):
+        if 'launch_test' in self.configdict["pathpilot"] and self.configdict["pathpilot"]["launch_test"]:
+            self.quit()
+        statDict = {}
+	print('Heading to make output blocks easier to identify: \n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-')
+        for key in dir(self.status):
+            if key[0] == "_":
+                continue
+            else:
+                statDict[key] = getattr(self.status, key)
+		#print(key)
+		#print(type(getattr(self.status, key)))
+		#print(getattr(self.status, key))
+	print(dir(self.status))
+
+'''
+
+['__class__', '__delattr__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'acceleration', 'active_queue', 'actual_position', 'adaptive_feed_enabled', 'ain', 'angular_units', 'aout', 'axes', 'axis', 'axis_mask', 'block_delete', 'call_level', 'command', 'completed_id', 'current_line', 'current_vel', 'cycle_time', 'debug', 'delay_left', 'din', 'distance_to_go', 'dout', 'dtg', 'echo_serial_number', 'enabled', 'estop', 'exec_state', 'feed_hold_enabled', 'feed_override_enabled', 'feedrate', 'file', 'flood', 'g5x_index', 'g5x_offset', 'g5x_offsets', 'g92_offset', 'gcodes', 'homed', 'id', 'inpos', 'input_timeout', 'interp_state', 'interpreter_errcode', 'joint_actual_position', 'joint_position', 'kinematics_type', 'limit', 'linear_units', 'lube', 'lube_level', 'max_acceleration', 'max_angular_velocity', 'max_velocity', 'mcodes', 'mist', 'motion_line', 'motion_mode', 'motion_type', 'next_id', 'optional_stop', 'orient_no_exec_error', 'orient_timeout', 'paused', 'pocket_prepped', 'poll', 'position', 'previous_line', 'probe_tripped', 'probe_val', 'probed_position', 'probing', 'program_ended', 'program_ended_and_reset', 'program_units', 'queue', 'queue_full', 'queued_mdi_commands', 'rapidrate', 'read_line', 'rotation_xy', 'settings', 'spindle_brake', 'spindle_direction', 'spindle_enabled', 'spindle_increasing', 'spindle_override_enabled', 'spindle_speed', 'spindle_sync', 'spindlerate', 'state', 'stopped', 'task_mode', 'task_paused', 'task_state', 'tool_in_spindle', 'tool_offset', 'tool_table', 'uu_per_rev', 'velocity', 'waiting_on_spindle']
+
