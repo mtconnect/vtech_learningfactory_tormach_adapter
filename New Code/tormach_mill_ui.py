@@ -8023,6 +8023,18 @@ class mill(TormachUIBase):
         if 'launch_test' in self.configdict["pathpilot"] and self.configdict["pathpilot"]["launch_test"]:
             self.quit()
 
+        # New code {
+        status_dictionary = {}
+        for key in dir(self.status):
+            if key[0] == "_":
+                continue
+            else:
+                status_dictionary[key] = getattr(self.status, key)
+        #TODO: Instead of printing this data, export it to our adapter file or MongoDB server
+        print(status_dictionary)
+
+        # }
+
         TormachUIBase.status_periodic_500ms(self)
 
         if self.pc_ok_LED_status == 0:
