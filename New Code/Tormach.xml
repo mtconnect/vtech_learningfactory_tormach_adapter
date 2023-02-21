@@ -60,7 +60,7 @@
 						        <DataItem type="EMERGENCY_STOP" id="estop" category="EVENT" name="estop"/>
 								<DataItem type="CONTROLLER_MODE" id="mode" category="EVENT" name="mode"/>
 								<DataItem type="EXECUTION" id="exec" category="EVENT" name="execution"/>
-                                <!-- CHECK ON THIS MIGHT BE DEPRECIATED <DataItem type="POWER_STATE" id="" category="EVENT" name=""/> -->
+                                <DataItem type="POWER_STATE" id="power" category="EVENT" name="pwrstate"/>
                             <DataItems>
 						</Path>
 					</Components>

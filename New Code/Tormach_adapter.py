@@ -14,8 +14,18 @@ lock = threading.Lock()
 event = threading.Event()
 event.set()
 
+#----------------------------------------------------------------#
+
+# ---What variables do we declare here?---#
 # Initialising 7 global attributes for HAAS serial comm macros
-## mac_status = part_num = prog_name = sspeed = coolant = sload = cut_status = combined_output = 'Nil'
+## mac_status = 'Nil'
+# part_num = 'Nil'
+# prog_name = 'Nil'
+# sspeed = 'Nil'
+# coolant = 'Nil'
+# sload = 'Nil'
+# cut_status = 'Nil'
+# combined_output = 'Nil'
 
 """Creating Socket Objects"""
 HOST = '0.0.0.0'
@@ -50,29 +60,26 @@ def thread_list_empty():
         except:
             print("Invalid Client List Deletion")
 
-def readData(ser, HAASCode):
+"""Function that reads date from Tormach Mill UI"""
+# Need to rework the except. self.status is for calling from tomrach_mill_ui
+def readData(keys):
     try:
-        ser.write(bytes("?Q600 " + HAASCode + "\r\n", "ascii"))
-        while True:
-            value = ser.readline().decode("utf-8").strip()
-            if len(value) > 4:
-                break
-        value = value.split(",")[2].strip()
-        value = value.replace(chr(23), '')
+        for k in self.status.keys():
+            print(k, self.status[k])
     except Exception as ex:
         print(ex)
         value = 'Nil' # maybe UNAVAILABLE?
     return value
 
-"""Function that parses attributes from the HAAS"""
+"""Function that parses attributes from the Tormach"""
 
-def fetch_from_HAAS():
+def fetch_from_Tormach():
     ## global mac_status, part_num, prog_name, sspeed, coolant, sload, cut_status, combined_output
     
 
     ser = serial.Serial(bytesize=serial.SEVENBITS, xonxoff=True)
     ser.baudrate = 9600
-    # Assuming HAAS is connected to ttyUSB0 port of Linux System
+    # Assuming Tormach is connected to ttyUSB0 port of Linux System
     ser.port = '/dev/ttyUSB0' 
     ser.timeout = 1
 
@@ -93,32 +100,30 @@ def fetch_from_HAAS():
             event.clear()
 
     print("ok1")
-    coolantPrevious = "novalue"
-    spindleSpeedPrevious = "novalue"
-    spindleLoadPrevious = "novalue"
-    xMachinePrevious = "novalue"
-    xWorkPrevious = "novalue"
-    yMachinePrevious = "novalue"
-    yWorkPrevious = "novalue"
-    zMachinePrevious = "novalue"
-    zWorkPrevious = "novalue"
-    aMachinePrevious = "novalue"
-    aWorkPrevious = "novalue"
-    bMachinePrevious = "novalue"
-    bWorkPrevious = "novalue"
+
+
+    absXPrevious = "novalue"
+    absYPrevious = "novalue"
+    absZPrevious = "novalue"
+    rotaryVelPrevious = "novalue"
+    machineAvailPrevious = "novalue"
+    eStopPrevious = "novalue"
+    executionStatePrevious = "novalue"
+    powerStatePrevious = "novalue"
+    controllerModePrevious = "novalue"
 
     while True:
         updated = False
         try:
             outString =""
             print("ok2")
-            #coolant
-            coolant = readData(ser, "1094")
-            if coolant != coolantPrevious:
-                print(coolant)
-                #outString += "|coolant|"+coolant
-                coolantPrevious = coolant
-            print("coolant: " + coolant)
+            #absX
+            absX = readData(ser, "1094")
+            if absX != absXPrevious:
+                print(absX)
+                #outString += "|absX|"+absX
+                absXPrevious = absX
+            print("absX: " + absX)
 
             #spindle speed
             spindleSpeed = readData(ser, "3027")
@@ -215,7 +220,7 @@ def fetch_from_HAAS():
                 outString += "|bWork|"+bWork
                 bWorkPrevious = bWork
             print("bWork: " + bWork)
-
+#-------------------------------------------------------------------#
             # Final data purge
             combined_output = '\r\n' + datetime.datetime.now().isoformat() + 'Z' + outString
             print("---",combined_output)
@@ -264,7 +269,7 @@ class NewClientThread(threading.Thread):
 
 """Starts From Here"""
 t1 = threading.Thread(target=thread_list_empty)
-t2 = threading.Thread(target=fetch_from_HAAS)
+t2 = threading.Thread(target=fetch_from_Tormach)
 t1.setDaemon(True)
 t2.setDaemon(True)
 t1.start()
