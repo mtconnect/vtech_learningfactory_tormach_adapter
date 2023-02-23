@@ -15,39 +15,25 @@
 						<Linear id="x" name="X">
 							<DataItems>
 								<DataItem type="POSITION" subType="ACTUAL" id="xpm" category="SAMPLE" name="Xabs" units="MILLIMETER" coordinateSystem="MACHINE"/>
-								<DataItem type="POSITION" subType="ACTUAL" id="xpw" category="SAMPLE" name="Xpos" units="MILLIMETER" coordinateSystem="WORK"/>
-								<DataItem type="POSITION" id="xt" category="CONDITION" name="Xtravel"/>
-								<DataItem type="LOAD" id="xl" category="SAMPLE" name="Xload" units="PERCENT"/>
-								<DataItem type="AXIS_FEEDRATE" id="xf" category="SAMPLE" name="Xfrt" units="MILLIMETER/SECOND"/>
+								<!-- <DataItem type="POSITION" subType="ACTUAL" id="xpw" category="SAMPLE" name="Xpos" units="MILLIMETER" coordinateSystem="WORK"/> -->
 							</DataItems>
 						</Linear>
 						<Linear id="y" name="Y">
 							<DataItems>
 								<DataItem type="POSITION" subType="ACTUAL" id="ypm" category="SAMPLE" name="Yabs" units="MILLIMETER" coordinateSystem="MACHINE"/>
-								<DataItem type="POSITION" subType="ACTUAL" id="ypw" category="SAMPLE" name="Ypos" units="MILLIMETER" coordinateSystem="WORK"/>
-								<DataItem type="POSITION" id="yt" category="CONDITION" name="Ytravel"/>
-								<DataItem type="LOAD" id="yl" category="SAMPLE" name="Yload" units="PERCENT"/>
-								<DataItem type="AXIS_FEEDRATE" id="yf" category="SAMPLE" name="Yfrt" units="MILLIMETER/SECOND"/>
+								<!-- <DataItem type="POSITION" subType="ACTUAL" id="ypw" category="SAMPLE" name="Ypos" units="MILLIMETER" coordinateSystem="WORK"/> -->
 							</DataItems>
 						</Linear>
 						<Linear id="z" name="Z">
 							<DataItems>
 								<DataItem type="POSITION" subType="ACTUAL" id="zpm" category="SAMPLE" name="Zabs" units="MILLIMETER" coordinateSystem="MACHINE"/>
-								<DataItem type="POSITION" subType="ACTUAL" id="zpw" category="SAMPLE" name="Zpos" units="MILLIMETER" coordinateSystem="WORK"/>
-								<DataItem type="POSITION" id="zt" category="CONDITION" name="Ztravel"/>
-								<DataItem type="LOAD" id="zl" category="SAMPLE" name="Zload" units="PERCENT"/>
-								<DataItem type="AXIS_FEEDRATE" id="zf" category="SAMPLE" name="Zfrt" units="MILLIMETER/SECOND"/>
+								<!-- <DataItem type="POSITION" subType="ACTUAL" id="zpw" category="SAMPLE" name="Zpos" units="MILLIMETER" coordinateSystem="WORK"/> -->
 							</DataItems>
 						</Linear>
                         <!-- Changes 1 -begins here -->
 						<Rotary id="c" name="C">
 							<DataItems>
 								<DataItem type="ROTARY_VELOCITY" id="cs" category="SAMPLE" name="Srpm" subType="ACTUAL" units="REVOLUTION/MINUTE"/>
-									<Constraints>
-										<Value>CONTOUR</Value>
-										<Value>SPINDLE</Value>
-										<Value>INDEX</Value>
-									</Constraints>
 						</Rotary>
                         <!-- Changes 1 -ends here -->
 					</Components>

@@ -3,9 +3,9 @@
 
 
 {
-    "ferror_current": 0.0,
-    "max_position_limit": 18.0,
-    "max_ferror": 0.05,
+    "ferror_current": 0.0, // Ignore
+    "max_position_limit": 18.0, // Ignore
+    "max_ferror": 0.05, 
     "override_limits": 0,
     "ferror_highmark": 0.0,
     "units": 0.03937007874015748,
