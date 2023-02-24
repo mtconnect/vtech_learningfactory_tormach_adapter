@@ -3,9 +3,10 @@ import time
 import socket
 import sys
 import datetime
-import serial
-import re
-import requests
+# import serial -not being used
+# import re -not being used
+# import requests -not being used
+import simulator
 
 client_counter = 0
 client_list = []
@@ -13,19 +14,6 @@ first_run_flag = 1
 lock = threading.Lock()
 event = threading.Event()
 event.set()
-
-#----------------------------------------------------------------#
-
-# ---What variables do we declare here?---#
-# Initialising 7 global attributes for HAAS serial comm macros
-## mac_status = 'Nil'
-# part_num = 'Nil'
-# prog_name = 'Nil'
-# sspeed = 'Nil'
-# coolant = 'Nil'
-# sload = 'Nil'
-# cut_status = 'Nil'
-# combined_output = 'Nil'
 
 """Creating Socket Objects"""
 HOST = '0.0.0.0'
@@ -60,178 +48,75 @@ def thread_list_empty():
         except:
             print("Invalid Client List Deletion")
 
-"""Function that reads date from Tormach Mill UI"""
-# Need to rework the except. self.status is for calling from tomrach_mill_ui
-def readData(keys):
-    try:
-        for k in self.status.keys():
-            print(k, self.status[k])
-    except Exception as ex:
-        print(ex)
-        value = 'Nil' # maybe UNAVAILABLE?
-    return value
+        print("ok1")
 
-"""Function that parses attributes from the Tormach"""
+        XabsPrevious = "novalue" 
+        YabsPrevious = "novalue" 
+        ZabsPrevious = "novalue"
+        SrpmPrevious = "novalue" 
+        estopPrevious = "novalue"
+        executionPrevious = "novalue"
 
-def fetch_from_Tormach():
-    ## global mac_status, part_num, prog_name, sspeed, coolant, sload, cut_status, combined_output
-    
-
-    ser = serial.Serial(bytesize=serial.SEVENBITS, xonxoff=True)
-    ser.baudrate = 9600
-    # Assuming Tormach is connected to ttyUSB0 port of Linux System
-    ser.port = '/dev/ttyUSB0' 
-    ser.timeout = 1
-
-    try:
-        ser.open()
-    except serial.SerialException:
-        if ser.is_open:
+        while True:
+            updated = False
             try:
-                print("Port was open. Attempting to close.")
-                ser.close()
+                outString =""
+                print("ok2")
+
+                # Xabs
+                if Xabs != XabsPrevious:
+                    print(Xabs)
+                    outString += "|Xabs|"+Xabs
+                    XabsPrevious = Xabs
+                print("Xabs: " + Xabs)
+
+                # Yabs
+                if Yabs != YabsPrevious:
+                    print(Yabs)
+                    outString += "|Yabs|"+Yabs
+                    YabsPrevious = Yabs
+                print("Yabs: " + Yabs)
+
+                # Zabs
+                if Zabs != ZabsPrevious:
+                    print(Zabs)
+                    outString += "|Zabs|"+Zabs
+                    ZabsPrevious = Zabs
+                print("Zabs: " + Zabs)
+
+                # Srpm
+                if Srpm != SrpmPrevious:
+                    print(Srpm)
+                    outString += "|Srpm|"+Srpm
+                    SrpmPrevious = Srpm
+                print("Srpm: " + Srpm)
+
+                # estop
+                if estop != estopPrevious:
+                    print(estop)
+                    outString += "|estop|"+estop
+                    estopPrevious = estop
+                print("estop: " + estop)
+
+                # execution
+                if execution != executionPrevious:
+                    print(execution)
+                    outString += "|execution|"+execution
+                    executionPrevious = execution
+                print("execution: " + execution)
+
+            
+            
+    #-------------------------------------------------------------------#
+                # Final data purge
+                combined_output = '\r\n' + datetime.datetime.now().isoformat() + 'Z' + outString
+                print("---",combined_output)
+            except Exception as ex:
+                print("Failed fetching values from machine: ")
+                print(ex)
                 time.sleep(2)
-                ser.open()
-            except:
-                print("Port is already open. Failed to close. Try again.")
-                event.clear()
-        else:
-            print("Failed to connect to serial port. Make sure it is free or it exists. Try again.")
-            event.clear()
 
-    print("ok1")
-
-
-    absXPrevious = "novalue"
-    absYPrevious = "novalue"
-    absZPrevious = "novalue"
-    rotaryVelPrevious = "novalue"
-    machineAvailPrevious = "novalue"
-    eStopPrevious = "novalue"
-    executionStatePrevious = "novalue"
-    powerStatePrevious = "novalue"
-    controllerModePrevious = "novalue"
-
-    while True:
-        updated = False
-        try:
-            outString =""
-            print("ok2")
-            #absX
-            absX = readData(ser, "1094")
-            if absX != absXPrevious:
-                print(absX)
-                #outString += "|absX|"+absX
-                absXPrevious = absX
-            print("absX: " + absX)
-
-            #spindle speed
-            spindleSpeed = readData(ser, "3027")
-            if spindleSpeed != spindleSpeedPrevious:
-                print(spindleSpeed, spindleSpeedPrevious)
-                outString += "|spindleSpeed|"+spindleSpeed
-                spindleSpeedPrevious = spindleSpeed
-            print("spindleSpeed: " + spindleSpeed)
-
-            # spindle load
-            spindleLoad = readData(ser, "1098")
-            if spindleLoad != spindleLoadPrevious:
-                print(spindleLoad)
-                #outString += "|spindleLoad|"+spindleLoad
-                spindleLoadPrevious = spindleLoad
-            print("spindleLoad: " + spindleLoad)
-
-            # x machine
-            xMachine = readData(ser, "5021")
-            if xMachine != xMachinePrevious:
-                print(xMachine)
-                outString += "|xMachine|"+xMachine
-                xMachinePrevious = xMachine
-            print("xMachine: " + xMachine)
-
-            # x work
-            xWork = readData(ser, "5041")
-            if xWork != xWorkPrevious:
-                print(xWork)
-                outString += "|xWork|"+xWork
-                xWorkPrevious = xWork
-            print("xWork: " + xWork)
-
-            # y machine
-            yMachine = readData(ser, "5022")
-            if yMachine != yMachinePrevious:
-                print(yMachine)
-                outString += "|yMachine|"+yMachine
-                yMachinePrevious = yMachine
-            print("yMachine: " + yMachine)
-
-            # y work
-            yWork = readData(ser, "5042")
-            if yWork != yWorkPrevious:
-                print(yWork)
-                outString += "|yWork|"+yWork
-                yWorkPrevious = yWork
-            print("yWork: " + yWork)
-
-            #z machine
-            zMachine = readData(ser, "5023")
-            if zMachine != zMachinePrevious:
-                print(zMachine)
-                outString += "|zMachine|"+zMachine
-                zMachinePrevious = zMachine
-            print("zMachine: " + zMachine)
-
-            #z work
-            zWork = readData(ser, "5043")
-            if zWork != zWorkPrevious:
-                print(zWork)
-                outString += "|zWork|"+zWork
-                zWorkPrevious = zWork
-            print("zWork: " + zWork)
-
-            # machine a
-            aMachine = readData(ser, "5024")
-            if aMachine != aMachinePrevious:
-                print(aMachine)
-                outString += "|aMachine|"+aMachine
-                aMachinePrevious = aMachine
-            print("aMachine: " + aMachine)
-
-            #machine b
-            bMachine = readData(ser, "5025")
-            if bMachine != bMachinePrevious:
-                print(bMachine)
-                outString += "|bMachine|"+bMachine
-                bMachinePrevious = bMachine
-            print("bMachine: " + bMachine)
-
-            # work a
-            aWork = readData(ser, "5044")
-            if aWork != aWorkPrevious:
-                print(aWork)
-                outString += "|aWork|"+aWork
-                aWorkPrevious = aWork
-            print("aWork: " + aWork)
-
-            # work b
-            bWork = readData(ser, "5045")
-            if bWork != bWorkPrevious:
-                print(bWork)
-                outString += "|bWork|"+bWork
-                bWorkPrevious = bWork
-            print("bWork: " + bWork)
-#-------------------------------------------------------------------#
-            # Final data purge
-            combined_output = '\r\n' + datetime.datetime.now().isoformat() + 'Z' + outString
-            print("---",combined_output)
-        except Exception as ex:
-            print("Failed fetching values from machine: ")
-            print(ex)
-            time.sleep(2)
-
-        # time.sleep(0.6)
-
-    ser.close()
+            # time.sleep(0.6)
 
 
 """Main Thread Class For Clients"""
