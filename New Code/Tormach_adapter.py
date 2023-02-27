@@ -6,7 +6,7 @@ import datetime
 # import serial -not being used
 # import re -not being used
 # import requests -not being used
-import simulator
+from simulatorV2 import dataSimulator
 
 client_counter = 0
 client_list = []
@@ -49,6 +49,32 @@ def thread_list_empty():
             print("Invalid Client List Deletion")
 
         print("ok1")
+
+    # Parser begins here
+        sim = dataSimulator()
+        result = sim.getData()
+        for dataKey in result.keys():
+            if dataKey == 'estop':
+                estop = result[dataKey]
+            
+            if dataKey == 'exec_state':
+                execution = result[dataKey]
+
+            if dataKey == 'axis':
+                Xabs = result[dataKey][0]['output']
+
+            if dataKey == 'axis':
+                Yabs = result[dataKey][1]['output']
+
+            if dataKey == 'axis':
+                Zabs = result[dataKey][2]['output']
+
+            if dataKey == 'axis':
+                Srpm = result[dataKey][3]['velocity']
+        
+        # Test purposes        
+        print(estop, execution, Xabs, Yabs, Zabs, Srpm)
+    # Parser ends here
 
         XabsPrevious = "novalue" 
         YabsPrevious = "novalue" 
