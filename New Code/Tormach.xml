@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<MTConnectDevices xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3" xmlns="urn:mtconnect.org:MTConnectDevices:1.3" xsi:schemaLocation="urn:mtconnect.org:MTConnectDevices:1.3 http://www.mtconnect.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<Header assetBufferSize="1024" assetCount="0" bufferSize="131072" instanceId="1" creationTime="2017-11-20T12:00:00Z" sender="MTC-pocketNC" version="1.3"/>
+<MTConnectDevices xmlns="urn:mtconnect.org:MTConnectDevices:1.7" xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="urn:mtconnect.org:MTConnectDevices:1.7 schema/MTConnectDevices_1.7.xsd">
+  <Header version="1.7.0" creationTime="2021-11-9T00:00:00Z" instanceId="1" sender="vt-data-02" bufferSize="131111" assetBufferSize="1000" assetCount="0"/>
 	<Devices>
 		<Device id="d1" uuid="Tormach-PCNC1100" name="Tormach-PCNC1100">
 			<Description>Tormach-PCNC1100</Description>
 			<DataItems>
-				<DataItem id="avail" name="avail" type="AVAILABILITY" category="EVENT"/>
-				<DataItem id="functionalmode" name="functionalmode" type="FUNCTIONAL_MODE" category="EVENT"/>
-
+				<DataItem category="EVENT" name="avail" type="AVAILABILITY"/>
+				<DataItem category="EVENT" id="functional_mode" name="functional_mode" type="FUNCTIONAL_MODE"/>
 			</DataItems>
 			<Components>
 				<Axes id="a" name="base">
@@ -30,32 +29,30 @@
 								<!-- <DataItem type="POSITION" subType="ACTUAL" id="zpw" category="SAMPLE" name="Zpos" units="MILLIMETER" coordinateSystem="WORK"/> -->
 							</DataItems>
 						</Linear>
-                        <!-- Changes 1 -begins here -->
+						<!-- Changes 1 -begins here -->
 						<Rotary id="c" name="C">
 							<DataItems>
 								<DataItem type="ROTARY_VELOCITY" id="cs" category="SAMPLE" name="Srpm" subType="ACTUAL" units="REVOLUTION/MINUTE"/>
+							</DataItems>
 						</Rotary>
-                        <!-- Changes 1 -ends here -->
-					</Components>
-				</Axes>		
-                 <!-- Changes 2 -begins here -->
-                <Controller id="cont" name="controller">
-                    <Components>
+					</Components>	
+				</Axes>	
+					<!-- Changes 1 -ends here -->	
+					<!-- Changes 2 -begins here -->
+				<Controller id="cont" name="controller">
+					<DataItems>
+						<DataItem type="EMERGENCY_STOP" id="estop" category="EVENT" name="estop"/>
+					</DataItems>
+					<Components>
 						<Path id="path1" name="path">
 							<DataItems>
-						        <DataItem type="EMERGENCY_STOP" id="estop" category="EVENT" name="estop"/>
 								<DataItem type="CONTROLLER_MODE" id="mode" category="EVENT" name="mode"/>
 								<DataItem type="EXECUTION" id="exec" category="EVENT" name="execution"/>
-                                <DataItem type="POWER_STATE" id="power" category="EVENT" name="pwrstate"/>
-                            <DataItems>
+								<DataItem type="POWER_STATE" id="power" category="EVENT" name="pwrstate"/>
+							</DataItems>
 						</Path>
 					</Components>
 				</Controller>
-					
-				 <!-- Changes 2 -ends here -->				
-							</DataItems>
-					</Components>
-				</Systems>
 			</Components>
 		</Device>
 	</Devices>
