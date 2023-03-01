@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectDevices xmlns="urn:mtconnect.org:MTConnectDevices:1.7" xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="urn:mtconnect.org:MTConnectDevices:1.7 schema/MTConnectDevices_1.7.xsd">
+  <Header version="1.7.0" creationTime="2021-11-9T00:00:00Z" instanceId="1" sender="vt-data-02" bufferSize="131111" assetBufferSize="1000" assetCount="0"/>
+  <Devices>
+    <Device id="UR5" uuid="UR5e" name="UR5 CB3" mtconnectVersion="1.7">
+      <Description manufacturer="UniversalRobots" model="UR5 CB3" serialNumber="2014350001">
+        UR5 CB3 data acquisition
+      </Description>
+      <DataItems>
+        <DataItem category="EVENT" id="URavail" name="avail" type="AVAILABILITY"/>
+        <DataItem category="EVENT" id="URasset_changed" name="asset_changed" type="ASSET_CHANGED"/>
+        <DataItem category="EVENT" id="URasset_removed" name="asset_removed" type="ASSET_REMOVED"/>
+        <DataItem category="EVENT" id="URfunctional_mode" name="functional_mode" type="FUNCTIONAL_MODE"/>
+        <DataItem type="COMPOSITION_STATE" subType="MOTION" id="gripperstate" name="compostionstate1" category="EVENT" compositionId="GripperControl"/>
+      </DataItems>
+      <Components>
+        <Rotary id="122123" name="j0" nativeName="Joint Size 3 Base UR5 CB3">
+          <DataItems>
+            <DataItem category="SAMPLE" id="122123" type="ANGLE" subType="ACTUAL" units="RADIAN" name="j0"/>
+          </DataItems>
+        </Rotary>
+        <Rotary id="122223" name="j1" nativeName="Joint Size 3 Shoulder UR5 CB3">
+          <DataItems>
+            <DataItem category="SAMPLE" id="122223" type="ANGLE" subType="ACTUAL" units="RADIAN" name="j1"/>
+          </DataItems>
+        </Rotary>
+        <Rotary id="122323" name="j2" nativeName="Joint Size 3 Elbow UR5 CB3">
+          <DataItems>
+            <DataItem category="SAMPLE" id="122323" type="ANGLE" subType="ACTUAL" units="RADIAN" name="j2"/>
+          </DataItems>
+        </Rotary>
+        <Rotary id="122121" name="j3" nativeName="Joint Size 1 Wrist 1 UR5 CB3">
+          <DataItems>
+            <DataItem category="SAMPLE" id="122121" type="ANGLE" subType="ACTUAL" units="RADIAN" name="j3"/>
+          </DataItems>
+        </Rotary>
+        <Rotary id="122221" name="j4" nativeName="Joint Size 1 Wrist 2 UR5 CB3">
+          <DataItems>
+            <DataItem category="SAMPLE" id="122221" type="ANGLE" subType="ACTUAL" units="RADIAN" name="j4"/>
+          </DataItems>
+        </Rotary>
+        <Rotary id="122321" name="j5" nativeName="Joint Size 1 Wrist 3 UR5 CB3">
+          <DataItems>
+            <DataItem category="SAMPLE" id="122321" type="ANGLE" subType="ACTUAL" units="RADIAN" name="j5"/>
+          </DataItems>
+        </Rotary>
+      </Components>
+    </Device>
+    <Device id="d1" uuid="HAAS-VF2" name="HAAS-VF2">
+			<Description>HAAS-VF3</Description>
+			<DataItems>
+				<DataItem id="avail" name="HHASavail" type="AVAILABILITY" category="EVENT"/>
+				<DataItem id="functionalmode" name="HAASfunctionalmode" type="FUNCTIONAL_MODE" category="EVENT"/>
+
+			</DataItems>
+			<Components>
+				<Axes id="a" name="base">
+					<Components>
+						<Linear id="x" name="X">
+							<DataItems>
+								<DataItem type="POSITION" subType="ACTUAL" id="xpm" category="SAMPLE" name="xmachine" units="MILLIMETER" coordinateSystem="MACHINE"/>
+								<DataItem type="POSITION" subType="ACTUAL" id="xpw" category="SAMPLE" name="xWork" units="MILLIMETER" coordinateSystem="WORK"/>
+							</DataItems>
+						</Linear>
+						<Linear id="y" name="Y">
+							<DataItems>
+								<DataItem type="POSITION" subType="ACTUAL" id="ypm" category="SAMPLE" name="ymachine" units="MILLIMETER" coordinateSystem="MACHINE"/>
+								<DataItem type="POSITION" subType="ACTUAL" id="ypw" category="SAMPLE" name="yWork" units="MILLIMETER" coordinateSystem="WORK"/>
+							</DataItems>
+						</Linear>
+						<Linear id="z" name="Z">
+							<DataItems>
+								<DataItem type="POSITION" subType="ACTUAL" id="zpm" category="SAMPLE" name="zmachine" units="MILLIMETER" coordinateSystem="MACHINE"/>
+								<DataItem type="POSITION" subType="ACTUAL" id="zpw" category="SAMPLE" name="zWork" units="MILLIMETER" coordinateSystem="WORK"/>
+							</DataItems>
+						</Linear>
+						<Rotary id="ar" name="A">
+							<DataItems>
+								<DataItem type="ANGLE" coordinateSystem="MACHINE" id="aposm" category="SAMPLE" name="amachine" subType="ACTUAL" units="DEGREE"/>
+								<DataItem type="ANGLE" coordinateSystem="WORK" id="aposw" category="SAMPLE" name="aWork" subType="ACTUAL" units="DEGREE"/>
+							</DataItems>
+						</Rotary>
+						<Rotary id="br" name="B">
+							<DataItems>
+								<DataItem type="ANGLE" coordinateSystem="MACHINE" id="bposm" category="SAMPLE" name="cmachine" subType="ACTUAL" units="DEGREE"/>
+								<DataItem type="ANGLE" coordinateSystem="WORK" id="bposw" category="SAMPLE" name="cWork" subType="ACTUAL" units="DEGREE"/>
+							</DataItems>
+						</Rotary>
+						<Rotary id="sr" name="S">
+							<DataItems>
+								<DataItem type="ROTARY_VELOCITY" id="ss" category="SAMPLE" name="spindleSpeed" subType="ACTUAL" units="REVOLUTION/MINUTE"/>
+							</DataItems>
+						</Rotary>
+					</Components>
+				</Axes>
+			</Components>
+		</Device>
+	</Devices>
+</MTConnectDevices>
