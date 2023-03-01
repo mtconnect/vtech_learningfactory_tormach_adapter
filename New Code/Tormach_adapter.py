@@ -48,101 +48,102 @@ def thread_list_empty():
         except:
             print("Invalid Client List Deletion")
 
-        print("ok1")
 
+def fetch_from_Tormach():
+    global combined_output
     # Parser begins here
-        sim = dataSimulator()
-        result = sim.getData()
-        for dataKey in result.keys():
-            if dataKey == 'estop':
-                estop = result[dataKey]
-            
-            if dataKey == 'exec_state':
-                execution = result[dataKey]
-
-            if dataKey == 'axis':
-                Xabs = result[dataKey][0]['output']
-
-            if dataKey == 'axis':
-                Yabs = result[dataKey][1]['output']
-
-            if dataKey == 'axis':
-                Zabs = result[dataKey][2]['output']
-
-            if dataKey == 'axis':
-                Srpm = result[dataKey][3]['velocity']
-        
-        # Test purposes        
-        print(estop, execution, Xabs, Yabs, Zabs, Srpm)
+    sim = dataSimulator()
+    
+    # Test purposes        
+    #print(estop, execution, Xabs, Yabs, Zabs, Srpm)
     # Parser ends here
 
-        XabsPrevious = "novalue" 
-        YabsPrevious = "novalue" 
-        ZabsPrevious = "novalue"
-        SrpmPrevious = "novalue" 
-        estopPrevious = "novalue"
-        executionPrevious = "novalue"
+    XabsPrevious = "novalue" 
+    YabsPrevious = "novalue" 
+    ZabsPrevious = "novalue"
+    SrpmPrevious = "novalue" 
+    estopPrevious = "novalue"
+    executionPrevious = "novalue"
 
-        while True:
-            updated = False
-            try:
-                outString =""
-                print("ok2")
+    while True:
+        updated = False
+        try:
+            result = sim.getData()
+            for dataKey in result.keys():
+                if dataKey == 'estop':
+                    estop = str(result[dataKey])
+                
+                if dataKey == 'exec_state':
+                    execution = str(result[dataKey])
 
-                # Xabs
-                if Xabs != XabsPrevious:
-                    print(Xabs)
-                    outString += "|Xabs|"+Xabs
-                    XabsPrevious = Xabs
-                print("Xabs: " + Xabs)
+                if dataKey == 'axis':
+                    Xabs = str(result[dataKey][0]['output'])
 
-                # Yabs
-                if Yabs != YabsPrevious:
-                    print(Yabs)
-                    outString += "|Yabs|"+Yabs
-                    YabsPrevious = Yabs
-                print("Yabs: " + Yabs)
+                if dataKey == 'axis':
+                    Yabs = str(result[dataKey][1]['output'])
 
-                # Zabs
-                if Zabs != ZabsPrevious:
-                    print(Zabs)
-                    outString += "|Zabs|"+Zabs
-                    ZabsPrevious = Zabs
-                print("Zabs: " + Zabs)
+                if dataKey == 'axis':
+                    Zabs = str(result[dataKey][2]['output'])
 
-                # Srpm
-                if Srpm != SrpmPrevious:
-                    print(Srpm)
-                    outString += "|Srpm|"+Srpm
-                    SrpmPrevious = Srpm
-                print("Srpm: " + Srpm)
+                if dataKey == 'axis':
+                    Srpm = str(result[dataKey][3]['velocity'])
+            outString =""
+            print("ok2")
 
-                # estop
-                if estop != estopPrevious:
-                    print(estop)
-                    outString += "|estop|"+estop
-                    estopPrevious = estop
-                print("estop: " + estop)
+            # Xabs
+            if Xabs != XabsPrevious:
+                print(Xabs)
+                outString += "|Xabs|"+Xabs
+                XabsPrevious = Xabs
+            print("Xabs: " + Xabs)
 
-                # execution
-                if execution != executionPrevious:
-                    print(execution)
-                    outString += "|execution|"+execution
-                    executionPrevious = execution
-                print("execution: " + execution)
+            # Yabs
+            if Yabs != YabsPrevious:
+                print(Yabs)
+                outString += "|Yabs|"+Yabs
+                YabsPrevious = Yabs
+            print("Yabs: " + Yabs)
 
-            
-            
-    #-------------------------------------------------------------------#
-                # Final data purge
-                combined_output = '\r\n' + datetime.datetime.now().isoformat() + 'Z' + outString
-                print("---",combined_output)
-            except Exception as ex:
-                print("Failed fetching values from machine: ")
-                print(ex)
-                time.sleep(2)
+            # Zabs
+            if Zabs != ZabsPrevious:
+                print(Zabs)
+                outString += "|Zabs|"+Zabs
+                ZabsPrevious = Zabs
+            print("Zabs: " + Zabs)
 
-            # time.sleep(0.6)
+            # Srpm
+            if Srpm != SrpmPrevious:
+                print(Srpm)
+                outString += "|Srpm|"+Srpm
+                SrpmPrevious = Srpm
+            print("Srpm: " + Srpm)
+
+            # estop
+            if estop != estopPrevious:
+                print(estop)
+                outString += "|estop|"+estop
+                estopPrevious = estop
+            print("estop: " + estop)
+
+            # execution
+            if execution != executionPrevious:
+                print(execution)
+                outString += "|execution|"+execution
+                executionPrevious = execution
+            print("execution: " + execution)
+
+        
+        
+#-------------------------------------------------------------------#
+            # Final data purge
+            combined_output = '\r\n' + datetime.datetime.now().isoformat() + 'Z' + outString
+            print("---",combined_output)
+            time.sleep(0.6)
+        except Exception as ex:
+            print("Failed fetching values from machine: ")
+            print(ex)
+            time.sleep(2)
+
 
 
 """Main Thread Class For Clients"""
@@ -163,6 +164,7 @@ class NewClientThread(threading.Thread):
             try:
                 #print("Sending data to Client {} in {}".format(self.client_ip, self.getName()))
                 out = combined_output
+                print("OUT1:")
                 print("OUT: "+ out)
                 self.connection_object.sendall(out.encode())
                 time.sleep(0.5)

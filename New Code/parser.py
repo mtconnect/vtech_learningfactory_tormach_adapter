@@ -19,7 +19,7 @@ sim = dataSimulator()
 result = sim.getData()
 for dataKey in result.keys():
     if dataKey == 'estop':
-       estop = result[dataKey]
+       estop = str(result[dataKey])
     
     if dataKey == 'exec_state':
        execution = result[dataKey]
