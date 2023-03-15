@@ -64,6 +64,8 @@ def fetch_from_Tormach():
     SrpmPrevious = "novalue" 
     estopPrevious = "novalue"
     executionPrevious = "novalue"
+    machineAvailPrevious = "novalue"
+    controllerModePrevious = "novalue"
 
     while True:
         updated = False
@@ -75,6 +77,12 @@ def fetch_from_Tormach():
                 
                 if dataKey == 'exec_state':
                     execution = str(result[dataKey])
+
+                if dataKey == 'task_state':
+                    machineAvail = str(result[dataKey])
+
+                if dataKey == 'task_mode':
+                    controllerMode = str(result[dataKey])
 
                 if dataKey == 'axis':
                     Xabs = str(result[dataKey][0]['output'])
@@ -131,6 +139,20 @@ def fetch_from_Tormach():
                 outString += "|execution|"+execution
                 executionPrevious = execution
             print("execution: " + execution)
+
+            # machine availability
+            if machineAvail != machineAvailPrevious:
+                print(machineAvail)
+                outString += "|machineAvail|"+machineAvail
+                machineAvailPrevious = machineAvail
+            print("machineAvail: " + machineAvail)
+
+            # cotroller mode
+            if controllerMode != controllerModePrevious:
+                print(controllerMode)
+                outString += "|controllerMode|"+controllerMode
+                controllerModePrevious = controllerMode
+            print("controllerMode: " + controllerMode)
 
         
         

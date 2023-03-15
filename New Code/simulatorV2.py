@@ -17,8 +17,8 @@ output2 = round(random.uniform(0.0, 279.0), 1)
 # absolute Z-axis position (output in linuxcnc) - float / max is 413mm (Tormach website)
 output3 = round(random.uniform(0.0, 413.0), 1)
 # C-axis rotary velocity (output in linuxcnc) - float/max is 7500RPM (Tormach website)
-# Are we using Srpm (output) or Velocity?
 Srpm = round(random.uniform(0.0, 7500.0), 1)
+
 
 class dataSimulator:
     def __init__(self):
@@ -34,6 +34,12 @@ class dataSimulator:
             # execution state (exec_state_state in linuxcnc)- integer (0 to 7)
             if dataKey == 'exec_state':
                 self.data[dataKey] = random.randint(0, 7)
+            # machine availability (task_state in linuxcnc) - 1, 2, 3 & 4
+            if dataKey == 'task_state':
+                self.data[dataKey] = random.randint(1, 4)
+            # controller mode (task_mode in linuxcnc) - 1, 2 & 3
+            if dataKey == 'task_mode':
+                self.data[dataKey] = random.randint(1, 3)
 
             # absolute X-axis position (output in linuxcnc) - float / max is 457mm (Tormach website)
             if dataKey == 'axis':
@@ -48,7 +54,6 @@ class dataSimulator:
                 smoothOutput3 = round(random.uniform(-1.0, 1.0), 1)
                 self.data[dataKey][2]['output'] = output3 + smoothOutput3
             # C-axis rotary velocity (output in linuxcnc) - float/max is 7500RPM (Tormach website)
-            # Santi - are you sure its velocity?
             if dataKey == 'axis':
                 smoothVelocity = round(random.uniform(-1.0, 1.0), 1)
                 self.data[dataKey][3]['velocity'] = Srpm + smoothVelocity

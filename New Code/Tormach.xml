@@ -5,7 +5,7 @@
 		<Device id="d1" uuid="Tormach-PCNC1100" name="Tormach-PCNC1100">
 			<Description>Tormach-PCNC1100</Description>
 			<DataItems>
-				<DataItem category="EVENT" name="avail" type="AVAILABILITY"/>
+				<DataItem category="EVENT" name="machineAvail" type="AVAILABILITY"/>
 				<DataItem category="EVENT" id="functional_mode" name="functional_mode" type="FUNCTIONAL_MODE"/>
 			</DataItems>
 			<Components>
@@ -46,9 +46,8 @@
 					<Components>
 						<Path id="path1" name="path">
 							<DataItems>
-								<DataItem type="CONTROLLER_MODE" id="mode" category="EVENT" name="mode"/>
+								<DataItem type="CONTROLLER_MODE" id="mode" category="EVENT" name="controllerMode"/>
 								<DataItem type="EXECUTION" id="exec" category="EVENT" name="execution"/>
-								<DataItem type="POWER_STATE" id="power" category="EVENT" name="pwrstate"/>
 							</DataItems>
 						</Path>
 					</Components>
