@@ -36,10 +36,10 @@ class dataSimulator:
                 self.data[dataKey] = random.randint(0, 7)
             # machine availability (task_state in linuxcnc) - 1, 2, 3 & 4
             if dataKey == 'task_state':
-                self.data[dataKey] = random.randint(1, 4)
+                self.data[dataKey] = random.randint(0, 3)
             # controller mode (task_mode in linuxcnc) - 1, 2 & 3
             if dataKey == 'task_mode':
-                self.data[dataKey] = random.randint(1, 3)
+                self.data[dataKey] = random.randint(0, 2)
 
             # absolute X-axis position (output in linuxcnc) - float / max is 457mm (Tormach website)
             if dataKey == 'axis':

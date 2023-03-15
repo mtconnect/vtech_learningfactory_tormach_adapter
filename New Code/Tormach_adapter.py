@@ -74,15 +74,52 @@ def fetch_from_Tormach():
             for dataKey in result.keys():
                 if dataKey == 'estop':
                     estop = str(result[dataKey])
+                    if estop == "0":
+                        estop = "OFF"
+                    if estop == "1":
+                        estop = "ON"
                 
                 if dataKey == 'exec_state':
                     execution = str(result[dataKey])
+                    if execution == "0":
+                        execution = "EXEC_ERROR"
+                    if execution == "1":
+                        execution = "EXEC_DONE"
+                    if execution == "2":
+                        execution = "EXEC_WAITING_FOR_MOTION"
+                    if execution == "3":
+                        execution = "EXEC_WAITING_FOR_MOTION_QUEUE"
+                    if execution == "4":
+                        execution = "EXEC_WAITING_FOR_PAUSE"
+                    if execution == "5":
+                        execution = "EXEC_WAITING_FOR_MOTION_AND_IO"
+                    if execution == "6":
+                        execution = "EXEC_WAITING_FOR_DELAY"
+                    if execution == "7":
+                        execution = "EXEC_WAITING_FOR_SYSTEM_CMD"
 
                 if dataKey == 'task_state':
                     machineAvail = str(result[dataKey])
+                    if machineAvail == "0":
+                        machineAvail = "STATE_ESTOP"
+                    if machineAvail == "1":
+                        machineAvail = "STATE_ESTOP_RESET"
+                    if machineAvail == "2":
+                        machineAvail = "STATE_ON"
+                    if machineAvail == "3":
+                        machineAvail = "STATE_OFF"
+                    print("==========================================")
+                    print (machineAvail)
+                    print("==========================================")
 
                 if dataKey == 'task_mode':
                     controllerMode = str(result[dataKey])
+                    if controllerMode == "0":
+                        controllerMode = "MODE_MDI"
+                    if controllerMode == "1":
+                        controllerMode = "MODE_AUTO"
+                    if controllerMode == "2":
+                        controllerMode = "MODE_MANUAL"
 
                 if dataKey == 'axis':
                     Xabs = str(result[dataKey][0]['output'])
