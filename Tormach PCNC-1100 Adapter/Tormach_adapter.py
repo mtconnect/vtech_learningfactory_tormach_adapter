@@ -3,9 +3,6 @@ import time
 import socket
 import sys
 import datetime
-# import serial -not being used
-# import re -not being used
-# import requests -not being used
 from simulator import dataSimulator
 
 client_counter = 0
@@ -176,7 +173,7 @@ def fetch_from_Tormach():
                 machineAvailPrevious = machineAvail
             print("machineAvail: " + machineAvail)
 
-            # cotroller mode
+            # controller mode
             if controllerMode != controllerModePrevious:
                 print(controllerMode)
                 outString += "|controllerMode|"+controllerMode
