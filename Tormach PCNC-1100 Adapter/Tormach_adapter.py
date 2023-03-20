@@ -53,10 +53,6 @@ def fetch_from_Tormach():
     global combined_output
     # Parser begins here
     sim = dataSimulator()
-    
-    # Test purposes        
-    #print(estop, execution, Xabs, Yabs, Zabs, Srpm)
-    # Parser ends here
 
     XabsPrevious = "novalue" 
     YabsPrevious = "novalue" 
@@ -75,16 +71,16 @@ def fetch_from_Tormach():
                 if dataKey == 'estop':
                     estop = str(result[dataKey])
                     if estop == "0":
-                        estop = "OFF"
+                        estop = "ARMED"
                     if estop == "1":
-                        estop = "ON"
+                        estop = "TRIGGERED"
                 
                 if dataKey == 'exec_state':
                     execution = str(result[dataKey])
                     if execution == "0":
                         execution = "EXEC_ERROR"
                     if execution == "1":
-                        execution = "EXEC_DONE"
+                        execution = "EXEC_DONE" "PROGRAM_COMPLETED"
                     if execution == "2":
                         execution = "EXEC_WAITING_FOR_MOTION"
                     if execution == "3":
@@ -112,11 +108,11 @@ def fetch_from_Tormach():
                 if dataKey == 'task_mode':
                     controllerMode = str(result[dataKey])
                     if controllerMode == "0":
-                        controllerMode = "MODE_MDI"
+                        controllerMode = "MANUAL_DATA_INPUT"
                     if controllerMode == "1":
-                        controllerMode = "MODE_AUTO"
+                        controllerMode = "AUTOMATIC"
                     if controllerMode == "2":
-                        controllerMode = "MODE_MANUAL"
+                        controllerMode = "MANUAL"
 
                 if dataKey == 'axis':
                     Xabs = str(result[dataKey][0]['output'])
