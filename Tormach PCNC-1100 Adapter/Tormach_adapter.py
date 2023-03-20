@@ -6,7 +6,7 @@ import datetime
 # import serial -not being used
 # import re -not being used
 # import requests -not being used
-from simulatorV2 import dataSimulator
+from simulator import dataSimulator
 
 client_counter = 0
 client_list = []
