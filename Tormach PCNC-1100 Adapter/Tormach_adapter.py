@@ -184,7 +184,7 @@ def fetch_from_Tormach():
             print("controllerMode: " + controllerMode)
 
         
-        
+    # Parser ends here
 #-------------------------------------------------------------------#
             # Final data purge
             combined_output = '\r\n' + datetime.datetime.now().isoformat() + 'Z' + outString
