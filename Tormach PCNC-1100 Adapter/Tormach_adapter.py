@@ -80,9 +80,9 @@ def fetch_from_Tormach():
                     if execution == "0":
                         execution = "EXEC_ERROR"
                     if execution == "1":
-                        execution = "EXEC_DONE" "PROGRAM_COMPLETED"
+                        execution = "EXEC_DONE" #"PROGRAM_COMPLETED"
                     if execution == "2":
-                        execution = "EXEC_WAITING_FOR_MOTION"
+                        execution = "EXEC_WAITING_FOR_MOTION" #"READY", 
                     if execution == "3":
                         execution = "EXEC_WAITING_FOR_MOTION_QUEUE"
                     if execution == "4":
