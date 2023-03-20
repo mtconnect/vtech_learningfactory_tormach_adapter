@@ -108,9 +108,6 @@ def fetch_from_Tormach():
                         machineAvail = "STATE_ON"
                     if machineAvail == "3":
                         machineAvail = "STATE_OFF"
-                    print("==========================================")
-                    print (machineAvail)
-                    print("==========================================")
 
                 if dataKey == 'task_mode':
                     controllerMode = str(result[dataKey])
@@ -133,7 +130,6 @@ def fetch_from_Tormach():
                 if dataKey == 'axis':
                     Srpm = str(result[dataKey][3]['velocity'])
             outString =""
-            print("ok2")
 
             # Xabs
             if Xabs != XabsPrevious:
