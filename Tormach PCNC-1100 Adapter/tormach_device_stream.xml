@@ -1,0 +1,41 @@
+<DeviceStream name="Tormach-PCNC1100" uuid="Tormach-PCNC1100">
+  <ComponentStream component="Rotary" name="C" componentId="c">
+    <Samples>
+      <RotaryVelocity dataItemId="cs" name="Srpm" sequence="115259" subType="ACTUAL" timestamp="2023-03-21T15:45:53.41789Z">1830.4</RotaryVelocity>
+    </Samples>
+  </ComponentStream>
+  <ComponentStream component="Controller" name="controller" componentId="cont">
+    <Events>
+      <EmergencyStop dataItemId="estop" name="estop" sequence="115253" timestamp="2023-03-21T15:45:52.725397Z">ARMED</EmergencyStop>
+    </Events>
+  </ComponentStream>
+  <ComponentStream component="Device" name="Tormach-PCNC1100" componentId="d1">
+    <Events>
+      <Availability dataItemId="" name="machineAvail" sequence="115261" timestamp="2023-03-21T15:45:53.41789Z">STATE_ON</Availability>
+      <AssetChanged dataItemId="d1_asset_chg" sequence="12" timestamp="2023-03-21T16:27:12.469542Z">UNAVAILABLE</AssetChanged>
+      <AssetRemoved dataItemId="d1_asset_rem" sequence="10" timestamp="2023-03-21T16:27:12.469497Z">UNAVAILABLE</AssetRemoved>
+      <FunctionalMode dataItemId="functional_mode" name="functional_mode" sequence="16" timestamp="2023-03-21T16:27:12.469641Z">UNAVAILABLE</FunctionalMode>
+    </Events>
+  </ComponentStream>
+  <ComponentStream component="Path" name="path" componentId="path1">
+    <Events>
+      <Execution dataItemId="exec" name="execution" sequence="115260" timestamp="2023-03-21T15:45:53.41789Z">EXEC_ERROR</Execution>
+      <ControllerMode dataItemId="mode" name="controllerMode" sequence="115262" timestamp="2023-03-21T15:45:53.41789Z">MANUAL_DATA_INPUT</ControllerMode>
+    </Events>
+  </ComponentStream>
+  <ComponentStream component="Linear" name="X" componentId="x">
+    <Samples>
+      <Position dataItemId="xpm" name="Xabs" sequence="115256" subType="ACTUAL" timestamp="2023-03-21T15:45:53.41789Z">422.1</Position>
+    </Samples>
+  </ComponentStream>
+  <ComponentStream component="Linear" name="Y" componentId="y">
+    <Samples>
+      <Position dataItemId="ypm" name="Yabs" sequence="115257" subType="ACTUAL" timestamp="2023-03-21T15:45:53.41789Z">263.9</Position>
+    </Samples>
+  </ComponentStream>
+  <ComponentStream component="Linear" name="Z" componentId="z">
+    <Samples>
+      <Position dataItemId="zpm" name="Zabs" sequence="115258" subType="ACTUAL" timestamp="2023-03-21T15:45:53.41789Z">322.8</Position>
+    </Samples>
+  </ComponentStream>
+</DeviceStream>
