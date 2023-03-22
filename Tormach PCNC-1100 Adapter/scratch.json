@@ -1,1 +1,102 @@
-{"{urn:mtconnect.org:MTConnectStreams:1.7}MTConnectStreams": {"{urn:mtconnect.org:MTConnectStreams:1.7}Header": {"@creationTime": "2023-03-21T21:51:41Z", "@sender": "LF-Alienware-02", "@instanceId": "1679416032", "@version": "1.8.0.3", "@deviceModelChangeTime": "2023-03-21T16:27:12.469710Z", "@bufferSize": "131072", "@nextSequence": "188568", "@firstSequence": "57496", "@lastSequence": "188567"}, "{urn:mtconnect.org:MTConnectStreams:1.7}Streams": {"{urn:mtconnect.org:MTConnectStreams:1.7}DeviceStream": [{"{urn:mtconnect.org:MTConnectStreams:1.7}ComponentStream": [{"{urn:mtconnect.org:MTConnectStreams:1.7}Samples": {"{urn:mtconnect.org:MTConnectStreams:1.7}AssetUpdateRate": {"@dataItemId": "_dcd2178b3d_asset_update_rate", "@sequence": "22", "@statistic": "AVERAGE", "@timestamp": "2023-03-21T16:27:12.481528Z", "#text": "UNAVAILABLE"}, "{urn:mtconnect.org:MTConnectStreams:1.7}ObservationUpdateRate": {"@dataItemId": "_dcd2178b3d_observation_update_rate", "@duration": "10", "@sequence": "188486", "@statistic": "AVERAGE", "@timestamp": "2023-03-21T21:51:32.85484Z", "#text": "9.2"}}, "{urn:mtconnect.org:MTConnectStreams:1.7}Events": {"{urn:mtconnect.org:MTConnectStreams:1.7}AdapterSoftwareVersion": {"@dataItemId": "_dcd2178b3d_adapter_software_version", "@sequence": "23", "@timestamp": "2023-03-21T16:27:12.481559Z", "#text": "UNAVAILABLE"}, "{urn:mtconnect.org:MTConnectStreams:1.7}AdapterURI": {"@dataItemId": "_dcd2178b3d_adapter_uri", "@sequence": "20", "@timestamp": "2023-03-21T16:27:12.481484Z", "#text": "shdr://192.168.1.25:7878"}, "{urn:mtconnect.org:MTConnectStreams:1.7}ConnectionStatus": {"@dataItemId": "_dcd2178b3d_connection_status", "@sequence": "454", "@timestamp": "2023-03-21T16:28:33.516846Z", "#text": "ESTABLISHED"}, "{urn:mtconnect.org:MTConnectStreams:1.7}MTConnectVersion": {"@dataItemId": "_dcd2178b3d_mtconnect_version", "@sequence": "19", "@timestamp": "2023-03-21T16:27:12.481448Z", "#text": "UNAVAILABLE"}}, "@component": "Adapter", "@name": "192.168.1.25:7878", "@componentId": "_dcd2178b3d"}, {"{urn:mtconnect.org:MTConnectStreams:1.7}Events": {"{urn:mtconnect.org:MTConnectStreams:1.7}AssetChanged": {"@dataItemId": "agent_2cde48001122_asset_chg", "@sequence": "2", "@timestamp": "2023-03-21T16:27:12.469021Z", "#text": "UNAVAILABLE"}, "{urn:mtconnect.org:MTConnectStreams:1.7}AssetRemoved": {"@dataItemId": "agent_2cde48001122_asset_rem", "@sequence": "1", "@timestamp": "2023-03-21T16:27:12.468862Z", "#text": "UNAVAILABLE"}, "{urn:mtconnect.org:MTConnectStreams:1.7}Availability": {"@dataItemId": "agent_avail", "@sequence": "25", "@timestamp": "2023-03-21T16:27:12.481607Z", "#text": "AVAILABLE"}, "{urn:mtconnect.org:MTConnectStreams:1.7}DeviceAdded": {"@dataItemId": "device_added", "@sequence": "18", "@timestamp": "2023-03-21T16:27:12.469686Z", "#text": "Tormach-PCNC1100"}, "{urn:mtconnect.org:MTConnectStreams:1.7}DeviceChanged": {"@dataItemId": "device_changed", "@sequence": "3", "@timestamp": "2023-03-21T16:27:12.46904Z", "#text": "UNAVAILABLE"}, "{urn:mtconnect.org:MTConnectStreams:1.7}DeviceRemoved": {"@dataItemId": "device_removed", "@sequence": "4", "@timestamp": "2023-03-21T16:27:12.469065Z", "#text": "UNAVAILABLE"}}, "@component": "Agent", "@name": "Agent", "@componentId": "agent_2cde48001122"}], "@name": "Agent", "@uuid": "0b49a3a0-18ca-0139-8748-2cde48001122"}, {"{urn:mtconnect.org:MTConnectStreams:1.7}ComponentStream": [{"{urn:mtconnect.org:MTConnectStreams:1.7}Samples": {"{urn:mtconnect.org:MTConnectStreams:1.7}RotaryVelocity": {"@dataItemId": "cs", "@name": "Srpm", "@sequence": "188558", "@subType": "ACTUAL", "@timestamp": "2023-03-21T17:51:39.290376Z", "#text": "1831.6"}}, "@component": "Rotary", "@name": "C", "@componentId": "c"}, {"{urn:mtconnect.org:MTConnectStreams:1.7}Events": {"{urn:mtconnect.org:MTConnectStreams:1.7}EmergencyStop": {"@dataItemId": "estop", "@name": "estop", "@sequence": "188566", "@timestamp": "2023-03-21T17:51:39.972683Z", "#text": "TRIGGERED"}}, "@component": "Controller", "@name": "controller", "@componentId": "cont"}, {"{urn:mtconnect.org:MTConnectStreams:1.7}Events": {"{urn:mtconnect.org:MTConnectStreams:1.7}Availability": {"@dataItemId": "", "@name": "machineAvail", "@sequence": "188561", "@timestamp": "2023-03-21T17:51:39.290376Z", "#text": "STATE_OFF"}, "{urn:mtconnect.org:MTConnectStreams:1.7}AssetChanged": {"@dataItemId": "d1_asset_chg", "@sequence": "12", "@timestamp": "2023-03-21T16:27:12.469542Z", "#text": "UNAVAILABLE"}, "{urn:mtconnect.org:MTConnectStreams:1.7}AssetRemoved": {"@dataItemId": "d1_asset_rem", "@sequence": "10", "@timestamp": "2023-03-21T16:27:12.469497Z", "#text": "UNAVAILABLE"}, "{urn:mtconnect.org:MTConnectStreams:1.7}FunctionalMode": {"@dataItemId": "functional_mode", "@name": "functional_mode", "@sequence": "16", "@timestamp": "2023-03-21T16:27:12.469641Z", "#text": "UNAVAILABLE"}}, "@component": "Device", "@name": "Tormach-PCNC1100", "@componentId": "d1"}, {"{urn:mtconnect.org:MTConnectStreams:1.7}Events": {"{urn:mtconnect.org:MTConnectStreams:1.7}Execution": {"@dataItemId": "exec", "@name": "execution", "@sequence": "188567", "@timestamp": "2023-03-21T17:51:39.972683Z", "#text": "EXEC_WAITING_FOR_MOTION"}, "{urn:mtconnect.org:MTConnectStreams:1.7}ControllerMode": {"@dataItemId": "mode", "@name": "controllerMode", "@sequence": "188562", "@timestamp": "2023-03-21T17:51:39.290376Z", "#text": "AUTOMATIC"}}, "@component": "Path", "@name": "path", "@componentId": "path1"}, {"{urn:mtconnect.org:MTConnectStreams:1.7}Samples": {"{urn:mtconnect.org:MTConnectStreams:1.7}Position": {"@dataItemId": "xpm", "@name": "Xabs", "@sequence": "188563", "@subType": "ACTUAL", "@timestamp": "2023-03-21T17:51:39.972683Z", "#text": "421.4"}}, "@component": "Linear", "@name": "X", "@componentId": "x"}, {"{urn:mtconnect.org:MTConnectStreams:1.7}Samples": {"{urn:mtconnect.org:MTConnectStreams:1.7}Position": {"@dataItemId": "ypm", "@name": "Yabs", "@sequence": "188564", "@subType": "ACTUAL", "@timestamp": "2023-03-21T17:51:39.972683Z", "#text": "265.4"}}, "@component": "Linear", "@name": "Y", "@componentId": "y"}, {"{urn:mtconnect.org:MTConnectStreams:1.7}Samples": {"{urn:mtconnect.org:MTConnectStreams:1.7}Position": {"@dataItemId": "zpm", "@name": "Zabs", "@sequence": "188565", "@subType": "ACTUAL", "@timestamp": "2023-03-21T17:51:39.972683Z", "#text": "323.7"}}, "@component": "Linear", "@name": "Z", "@componentId": "z"}], "@name": "Tormach-PCNC1100", "@uuid": "Tormach-PCNC1100"}]}, "@{http://www.w3.org/2001/XMLSchema-instance}schemaLocation": "urn:mtconnect.org:MTConnectStreams:1.7 /schemas/MTConnectStreams_1.7.xsd"}}
+{
+    "@name": "Tormach-PCNC1100",
+    "@uuid": "Tormach-PCNC1100",
+    "Rotary": {
+        "Samples": {
+            "RotaryVelocity": {
+                "@dataItemId": "cs",
+                "@name": "Srpm",
+                "@sequence": "287177",
+                "@subType": "ACTUAL",
+                "@timestamp": "2023-03-21T20:40:47.663018Z",
+                "#text": "1830.5"
+            }
+        },
+        "@component": "Rotary",
+        "@name": "C",
+        "@componentId": "c"
+    },
+    "Controller": {
+        "Events": {
+            "EmergencyStop": {
+                "@dataItemId": "estop",
+                "@name": "estop",
+                "@sequence": "287167",
+                "@timestamp": "2023-03-21T20:40:46.308676Z",
+                "#text": "ARMED"
+            }
+        },
+        "@component": "Controller",
+        "@name": "controller",
+        "@componentId": "cont"
+    },
+    "Device": {
+        "Events": {
+            "Availability": {
+                "@dataItemId": "",
+                "@name": "machineAvail",
+                "@sequence": "287169",
+                "@timestamp": "2023-03-21T20:40:46.308676Z",
+                "#text": "STATE_OFF"
+            },
+            "AssetChanged": {
+                "@dataItemId": "d1_asset_chg",
+                "@sequence": "12",
+                "@timestamp": "2023-03-21T16:27:12.469542Z",
+                "#text": "UNAVAILABLE"
+            },
+            "AssetRemoved": {
+                "@dataItemId": "d1_asset_rem",
+                "@sequence": "10",
+                "@timestamp": "2023-03-21T16:27:12.469497Z",
+                "#text": "UNAVAILABLE"
+            },
+            "FunctionalMode": {
+                "@dataItemId": "functional_mode",
+                "@name": "functional_mode",
+                "@sequence": "16",
+                "@timestamp": "2023-03-21T16:27:12.469641Z",
+                "#text": "UNAVAILABLE"
+            }
+        },
+        "@component": "Device",
+        "@name": "Tormach-PCNC1100",
+        "@componentId": "d1"
+    },
+    "Path": {
+        "Events": {
+            "Execution": {
+                "@dataItemId": "exec",
+                "@name": "execution",
+                "@sequence": "287178",
+                "@timestamp": "2023-03-21T20:40:47.663018Z",
+                "#text": "EXEC_WAITING_FOR_DELAY"
+            },
+            "ControllerMode": {
+                "@dataItemId": "mode",
+                "@name": "controllerMode",
+                "@sequence": "287170",
+                "@timestamp": "2023-03-21T20:40:46.308676Z",
+                "#text": "MANUAL_DATA_INPUT"
+            }
+        },
+        "@component": "Path",
+        "@name": "path",
+        "@componentId": "path1"
+    },
+    "Linear": {
+        "Samples": {
+            "Position": {
+                "@dataItemId": "zpm",
+                "@name": "Zabs",
+                "@sequence": "287176",
+                "@subType": "ACTUAL",
+                "@timestamp": "2023-03-21T20:40:47.663018Z",
+                "#text": "322.8"
+            }
+        },
+        "@component": "Linear",
+        "@name": "Z",
+        "@componentId": "z"
+    }
+}

@@ -1,0 +1,609 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                    "type": "grafana",
+                    "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 11,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+        {
+            "datasource": {
+                "type": "grafana-mongodb-datasource",
+                "uid": "yW8wNVf4z"
+            },
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "max": 100,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "percentage",
+                        "steps": [
+                            {
+                                "color": "dark-red",
+                                "value": null
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 75
+                            },
+                            {
+                                "color": "green",
+                                "value": 90
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 7,
+                "x": 0,
+                "y": 0
+            },
+            "id": 1,
+            "options": {
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "/^Aggregate Availability$/",
+                    "values": false
+                },
+                "showThresholdLabels": true,
+                "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.4.7",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "grafana-mongodb-datasource",
+                        "uid": "yW8wNVf4z"
+                    },
+                    "key": "Q-4be2bcee-2946-4d6c-8845-0c57f5865b31-0",
+                    "parsedQuery": "dashboard_data.collection_8.find({}).sort({RecordNumber: -1}).limit(1)",
+                    "query": "dashboard_data.collection_8.find({}).sort({RecordNumber: -1}).limit(1)",
+                    "queryType": "query",
+                    "refId": "A"
+                }
+            ],
+            "title": "Fleet Availability (%)",
+            "type": "gauge"
+        },
+        {
+            "datasource": {
+                "type": "grafana-mongodb-datasource",
+                "uid": "yW8wNVf4z"
+            },
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "max": 100,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "percentage",
+                        "steps": [
+                            {
+                                "color": "dark-red",
+                                "value": null
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 75
+                            },
+                            {
+                                "color": "green",
+                                "value": 90
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 7,
+                "x": 7,
+                "y": 0
+            },
+            "id": 4,
+            "options": {
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "/^Production Level$/",
+                    "values": false
+                },
+                "showThresholdLabels": true,
+                "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.4.7",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "grafana-mongodb-datasource",
+                        "uid": "yW8wNVf4z"
+                    },
+                    "key": "Q-4be2bcee-2946-4d6c-8845-0c57f5865b31-0",
+                    "parsedQuery": "dashboard_data.collection_8.find({}).sort({RecordNumber: -1}).limit(1)",
+                    "query": "dashboard_data.collection_8.find({}).sort({RecordNumber: -1}).limit(1)",
+                    "queryType": "query",
+                    "refId": "A"
+                }
+            ],
+            "title": "Production Level (%)",
+            "type": "gauge"
+        },
+        {
+            "datasource": {
+                "type": "grafana-mongodb-datasource",
+                "uid": "yW8wNVf4z"
+            },
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds",
+                        "seriesBy": "last"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineStyle": {
+                            "fill": "solid"
+                        },
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "show": "lines"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 7282
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Tormach-PCNC1100.Rotary.Samples.RotaryVelocity.value"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "Rotational Velocity"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 6,
+                "x": 14,
+                "y": 0
+            },
+            "id": 7,
+            "options": {
+                "dims": {
+                    "exclude": [
+                        "Available Machines",
+                        "Production Level",
+                        "RecordNumber",
+                        "Aggregate Availability",
+                        "Active Machines",
+                        "Total Machines"
+                    ],
+                    "x": "RecordNumber"
+                },
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "series": [],
+                "seriesMapping": "auto",
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "grafana-mongodb-datasource",
+                        "uid": "yW8wNVf4z"
+                    },
+                    "parsedQuery": "dashboard_data.collection_8.find({}).sort({RecordNumber: -1}).limit(120)",
+                    "query": "dashboard_data.collection_8.find({}).sort({RecordNumber: -1}).limit(120)",
+                    "queryType": "query",
+                    "refId": "A"
+                }
+            ],
+            "title": "Tormach-PCNC1100 - Rotational Velocity (Last 2 Minutes)",
+            "type": "xychart"
+        },
+        {
+            "datasource": {
+                "type": "grafana-mongodb-datasource",
+                "uid": "yW8wNVf4z"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "cellOptions": {
+                            "type": "auto"
+                        },
+                        "inspect": false
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Field"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "Machine"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Last"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "Availability State"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Machine"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 324
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 7,
+                "x": 0,
+                "y": 8
+            },
+            "id": 3,
+            "options": {
+                "footer": {
+                    "countRows": false,
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": []
+            },
+            "pluginVersion": "9.4.7",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "grafana-mongodb-datasource",
+                        "uid": "yW8wNVf4z"
+                    },
+                    "parsedQuery": "dashboard_data.collection_8.find({}, {\"Tormach-PCNC1100.Device.Events.Availability.#text\":1,\"Haas.Device.Events.Availability.#text\":1,\"UR5.Device.Events.Availability.#text\":1,\"Tormach_2.Device.Events.Availability.#text\":1,\"Tormach_3.Device.Events.Availability.#text\":1,\"Tormach_4.Device.Events.Availability.#text\":1,\"Tormach_5.Device.Events.Availability.#text\":1,\"Tormach_6.Device.Events.Availability.#text\":1,\"_id\":0}).sort({RecordNumber: -1}).limit(1)",
+                    "query": "dashboard_data.collection_8.find({}, {\n  'Tormach-PCNC1100.Device.Events.Availability.#text': 1,\n  'Haas.Device.Events.Availability.#text': 1,\n  'UR5.Device.Events.Availability.#text': 1,\n  'Tormach_2.Device.Events.Availability.#text': 1,\n  'Tormach_3.Device.Events.Availability.#text': 1,\n  'Tormach_4.Device.Events.Availability.#text': 1,\n  'Tormach_5.Device.Events.Availability.#text': 1,\n  'Tormach_6.Device.Events.Availability.#text': 1,\n  '_id': 0\n}).sort({RecordNumber: -1}).limit(1)",
+                    "queryType": "query",
+                    "refId": "A"
+                }
+            ],
+            "title": "Fleet Availability",
+            "transformations": [
+                {
+                    "id": "reduce",
+                    "options": {
+                        "reducers": [
+                            "last"
+                        ]
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "datasource": {
+                "type": "grafana-mongodb-datasource",
+                "uid": "yW8wNVf4z"
+            },
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "cellOptions": {
+                            "type": "auto"
+                        },
+                        "inspect": false
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Field"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "Machine"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Last"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "Execution State"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Machine"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 322
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 7,
+                "x": 7,
+                "y": 8
+            },
+            "id": 5,
+            "options": {
+                "footer": {
+                    "countRows": false,
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": []
+            },
+            "pluginVersion": "9.4.7",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "grafana-mongodb-datasource",
+                        "uid": "yW8wNVf4z"
+                    },
+                    "parsedQuery": "dashboard_data.collection_8.find({}, {\"Tormach-PCNC1100.Path.Events.Execution.#text\":1,\"Haas.Path.Events.Execution.#text\":1,\"UR5.Path.Events.Execution.#text\":1,\"Tormach_2.Path.Events.Execution.#text\":1,\"Tormach_3.Path.Events.Execution.#text\":1,\"Tormach_4.Path.Events.Execution.#text\":1,\"Tormach_5.Path.Events.Execution.#text\":1,\"Tormach_6.Path.Events.Execution.#text\":1,\"_id\":0}).sort({RecordNumber: -1}).limit(1)",
+                    "query": "dashboard_data.collection_8.find({}, {\n  'Tormach-PCNC1100.Path.Events.Execution.#text': 1,\n  'Haas.Path.Events.Execution.#text': 1,\n  'UR5.Path.Events.Execution.#text': 1,\n  'Tormach_2.Path.Events.Execution.#text': 1,\n  'Tormach_3.Path.Events.Execution.#text': 1,\n  'Tormach_4.Path.Events.Execution.#text': 1,\n  'Tormach_5.Path.Events.Execution.#text': 1,\n  'Tormach_6.Path.Events.Execution.#text': 1,\n  '_id': 0\n}).sort({RecordNumber: -1}).limit(1)",
+                    "queryType": "query",
+                    "refId": "A"
+                }
+            ],
+            "title": "Fleet Production Snapshot",
+            "transformations": [
+                {
+                    "id": "reduce",
+                    "options": {
+                        "reducers": [
+                            "last"
+                        ]
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "datasource": {
+                "type": "grafana-mongodb-datasource",
+                "uid": "yW8wNVf4z"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "continuous-RdYlGr"
+                    },
+                    "mappings": [
+                        {
+                            "options": {
+                                "ARMED": {
+                                    "color": "green",
+                                    "index": 0,
+                                    "text": "ARMED"
+                                },
+                                "TRIGGERED": {
+                                    "color": "red",
+                                    "index": 1,
+                                    "text": "TRIGGERED"
+                                }
+                            },
+                            "type": "value"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 6,
+                "x": 14,
+                "y": 8
+            },
+            "id": 9,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "last"
+                    ],
+                    "fields": "/^Tormach\\-PCNC1100\\.Controller\\.Events\\.EmergencyStop\\.\\#text$/",
+                    "values": false
+                },
+                "text": {
+                    "titleSize": 200
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.4.7",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "grafana-mongodb-datasource",
+                        "uid": "yW8wNVf4z"
+                    },
+                    "parsedQuery": "dashboard_data.collection_8.find({}).sort({RecordNumber: -1}).limit(300)",
+                    "query": "dashboard_data.collection_8.find({}).sort({RecordNumber: -1}).limit(300)",
+                    "queryType": "query",
+                    "refId": "A"
+                }
+            ],
+            "title": "Tormach PCNC-1100: Emergency Stop Monitor",
+            "type": "stat"
+        }
+    ],
+    "refresh": "5s",
+    "revision": 1,
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-5m",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "MTConnect Fleet",
+    "uid": "mDIYDVBVz",
+    "version": 9,
+    "weekStart": ""
+}

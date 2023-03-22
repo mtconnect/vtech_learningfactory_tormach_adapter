@@ -44,10 +44,13 @@ def etree_to_dict(tree):
         else:
             d[tree.tag] = text
     return d
-    
-record_number = 5000
+
+# Sets the 0th record number to store - first record will be stored with subsequent number.
+# Use this when adding data to an existing collection to avoid doubling record numbers.   
+record_number = 7000
+
 # Stores a set number of records to database. TODO: Set this to run continuously ('while True') for production
-while record_number < 6000:
+while True:
     # Increment record number
     record_number = record_number + 1
 
@@ -65,6 +68,7 @@ while record_number < 6000:
     # Extract arrayed data items into nested dictionary entries for Mongo
     machines = 0
     available_machines = 0
+    active_machines = 0
     for device in record['MTConnectStreams']['Streams']['DeviceStream']:
         
         # TODO: Ask AMT - Will this work if there are multiple machines in the fleet with the same name? Is that even possible in MTConnect (e.g. might be a non issue?)
@@ -90,6 +94,10 @@ while record_number < 6000:
         # Check availability for Charts display
         if (device_name != "Agent") and device['Device']['Events']['Availability']['#text'] in ['STATE_ON']:
                 available_machines += 1
+
+        # Check activity for Charts display
+        if (device_name != "Agent") and device['Path']['Events']['Execution']['#text'] in ['ACTIVE']:
+                active_machines += 1
                 
 
     # Clean up doubled data in record
@@ -105,18 +113,48 @@ while record_number < 6000:
                         '#text': ""
                     }
                 }
+            },
+            'Path': {
+                'Events': {
+                    'Execution': {
+                        '#text': ""
+                    }
+                }
             }
         }
-        rand = random.random()
-        if rand < 0.91:
+        rand1 = random.random()
+        rand2 = random.random()
+        if rand1 < 0.97:
             device['Device']['Events']['Availability']['#text'] = 'STATE_ON'
             available_machines += 1
-        elif rand < 0.94:
+            if rand2 < 0.85:
+                device['Path']['Events']['Execution']['#text'] = 'ACTIVE'
+                active_machines += 1
+            elif rand2 < 0.93:
+                device['Path']['Events']['Execution']['#text'] = 'READY'
+            elif rand2 < 0.94:
+                device['Path']['Events']['Execution']['#text'] = 'INTERRUPTED'
+            elif rand2 < 0.95:
+                device['Path']['Events']['Execution']['#text'] = 'WAIT'
+            elif rand2 < 0.96:
+                device['Path']['Events']['Execution']['#text'] = 'FEED_HOLD'
+            elif rand2 < 0.97:
+                device['Path']['Events']['Execution']['#text'] = 'STOPPED'
+            elif rand2 < 0.98:
+                device['Path']['Events']['Execution']['#text'] = 'OPTIONAL_STOP'
+            elif rand2 < 0.99:
+                device['Path']['Events']['Execution']['#text'] = 'PROGRAM_STOPPED'
+            else:
+                device['Path']['Events']['Execution']['#text'] = 'PROGRAM_COMPLETED'
+        elif rand1 < 0.98:
             device['Device']['Events']['Availability']['#text'] = 'STATE_OFF'
-        elif rand < 0.97:
+            device['Path']['Events']['Execution']['#text'] = 'STOPPED'
+        elif rand1 < 0.99:
             device['Device']['Events']['Availability']['#text'] = 'STATE_ESTOP'
+            device['Path']['Events']['Execution']['#text'] = 'INTERRUPTED'
         else:
             device['Device']['Events']['Availability']['#text'] = 'STATE_ESTOP_RESET'
+            device['Path']['Events']['Execution']['#text'] = 'STOPPED'
         
         record[device_name] = device        
 
@@ -126,6 +164,8 @@ while record_number < 6000:
     record['Total Machines'] = machines
     record['Available Machines'] = available_machines
     record['Aggregate Availability'] = 100 * available_machines/machines
+    record['Active Machines'] = active_machines
+    record['Production Level'] = 100 * active_machines/machines
 
         
 
