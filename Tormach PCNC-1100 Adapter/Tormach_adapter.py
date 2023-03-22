@@ -93,16 +93,16 @@ def fetch_from_Tormach():
                     else:
                         execution = "PROGRAM_COMPLETED"
 
-                # if dataKey == 'task_state':
-                #     machineAvail = str(result[dataKey])
-                #     if machineAvail == "0":
-                #         machineAvail = "STATE_ESTOP"
-                #     if machineAvail == "1":
-                #         machineAvail = "STATE_ESTOP_RESET"
-                #     if machineAvail == "2":
-                #         machineAvail = "STATE_ON"
-                #     if machineAvail == "3":
-                #         machineAvail = "STATE_OFF"
+                if dataKey == 'task_state':
+                    machineAvail = str(result[dataKey])
+                    if machineAvail == "0":
+                        machineAvail = "AVAILABLE"
+                    if machineAvail == "1":
+                        machineAvail = "AVAILABLE"
+                    if machineAvail == "2":
+                        machineAvail = "AVAILABLE"
+                    if machineAvail == "3":
+                        machineAvail = "UNAVAILABLE"
 
                 if dataKey == 'task_mode':
                     controllerMode = str(result[dataKey])
