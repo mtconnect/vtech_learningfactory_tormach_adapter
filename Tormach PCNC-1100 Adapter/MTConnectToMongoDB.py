@@ -45,11 +45,11 @@ def etree_to_dict(tree):
             d[tree.tag] = text
     return d
 
-# Sets the 0th record number to store - first record will be stored with subsequent number.
-# Use this when adding data to an existing collection to avoid doubling record numbers.   
+# Sets the 0th record number to store (first record will be stored with subsequent number).
+# Use this when adding data to an existing collection to avoid doubling record numbers; set 0 for new collection.   
 record_number = 7000
 
-# Stores a set number of records to database. TODO: Set this to run continuously ('while True') for production
+# Runs continuously, collects data from MTConnect agent and stores to MongoDB
 while True:
     # Increment record number
     record_number = record_number + 1
