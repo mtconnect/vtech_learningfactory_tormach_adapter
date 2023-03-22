@@ -75,21 +75,23 @@ def fetch_from_Tormach():
                 if dataKey == 'exec_state':
                     execution = str(result[dataKey])
                     if execution == "0":
-                        execution = "EXEC_ERROR"
-                    if execution == "1":
-                        execution = "EXEC_DONE" #"PROGRAM_COMPLETED"
-                    if execution == "2":
-                        execution = "EXEC_WAITING_FOR_MOTION" #"READY", 
-                    if execution == "3":
-                        execution = "EXEC_WAITING_FOR_MOTION_QUEUE"
-                    if execution == "4":
-                        execution = "EXEC_WAITING_FOR_PAUSE"
-                    if execution == "5":
-                        execution = "EXEC_WAITING_FOR_MOTION_AND_IO"
-                    if execution == "6":
-                        execution = "EXEC_WAITING_FOR_DELAY"
-                    if execution == "7":
-                        execution = "EXEC_WAITING_FOR_SYSTEM_CMD"
+                        execution = "READY"
+                    elif execution == "1":
+                        execution = "ACTIVE" #"PROGRAM_COMPLETED"
+                    elif execution == "2":
+                        execution = "INTERRUPTED" #"READY", 
+                    elif execution == "3":
+                        execution = "WAIT"
+                    elif execution == "4":
+                        execution = "FEED_HOLD"
+                    elif execution == "5":
+                        execution = "STOPPED"
+                    elif execution == "6":
+                        execution = "OPTIONAL_STOP"
+                    elif execution == "7":
+                        execution = "PROGRAM_STOPPED"
+                    else:
+                        execution = "PROGRAM COMPLETED"
 
                 if dataKey == 'task_state':
                     machineAvail = str(result[dataKey])

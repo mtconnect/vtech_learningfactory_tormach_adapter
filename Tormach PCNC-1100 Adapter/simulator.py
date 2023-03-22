@@ -31,7 +31,7 @@ class dataSimulator:
                 self.data[dataKey] = random.randint(0, 1)
             # execution state (exec_state_state in linuxcnc)- integer (0 to 7)
             if dataKey == 'exec_state':
-                self.data[dataKey] = random.randint(0, 7)
+                self.data[dataKey] = random.randint(0, 8)
             # machine availability (task_state in linuxcnc) - 1, 2, 3 & 4
             if dataKey == 'task_state':
                 self.data[dataKey] = random.randint(0, 3)
