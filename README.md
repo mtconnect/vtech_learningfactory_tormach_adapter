@@ -18,7 +18,7 @@ Storage: 1 TB
 <br>
 OS: Ubuntu Linux (20.04.1 SMP)
 
-# Step-By-Step Guide 
+## Step-By-Step Guide 
  
 Data Extraction
 ------
