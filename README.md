@@ -54,10 +54,10 @@ Installing MTConnect Agent
 To develop the adapter, some key functions need to be developed:
 * `1) Download MTConnect Agent from` https://github.com/mtconnect/cppagent/releases?q=1.8.0.3&expanded=true
 * `2) Extract and move ‘cppagent-1.8.0.3’ folder to Documents`
-* `3) Make a folder called ‘build’ inside ‘‘cppagent-1.8.0.3’ folder`
-* `4) Open terminal and cd Documents>‘cppagent-1.8.0.3>build and run ‘cmake’`
-* `5) Run <code>make</code>`   
-* `6) Run <code>sudo make install</code>`
+* `3) Make a folder called ‘build’ inside ‘cppagent-1.8.0.3’ folder`
+* `4) Open terminal and cd Documents>‘cppagent-1.8.0.3>build and run 'cmake'`
+* `5) Run 'make'`   
+* `6) Run 'sudo make install'`
 
 Configuring the Agent
 ------
@@ -110,15 +110,6 @@ Lastly, this step is important for the agent to work. Since ‘cppagent-1.8.0.3�
 How to start the Agent
 ------
 * `1) Open terminal and run Tormach_adapter.py script.`
-* `2) Open a new terminal window and cd Documents/Tormach and run <code>agent run</code>`
+* `2) Open a new terminal window and cd Documents/Tormach and run 'agent run'`
 * `3) If accessing from local computer, simply run http://localhost:5000 on the web browser`
 * `4) If accessing from another computer in the same network, run http://{insertIPaddress}:5001`
-
-
-
-
-
-
-
-
-
