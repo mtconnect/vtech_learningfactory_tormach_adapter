@@ -69,15 +69,15 @@ Explain what each element signifies
 
 ‘agent.cfg’ should be configured to match the port and file path. The following is the header and it is important to specify SchemaVersion to be 1.7 so it matches the XML schema. Port was assigned to 5001 but the default is 5000.
 
-Devices = ./Tormach.xml
-AllowPut = true
-ReconnectInterval = 1000
-BufferSize = 17
-SchemaVersion = 1.7
-MonitorConfigFiles = true
-Pretty = true
-Port = 5001
-# MinimumConfigReloadAge = 30
+    Devices = ./Tormach.xml
+    AllowPut = true
+    ReconnectInterval = 1000
+    BufferSize = 17
+    SchemaVersion = 1.7
+    MonitorConfigFiles = true
+    Pretty = true
+    Port = 5001
+    # MinimumConfigReloadAge = 30
 
 In this part, the host is the IP address of the machine in use. This port will be important when the MTConnect web UI is being accessed from another computer in the local network.
 
