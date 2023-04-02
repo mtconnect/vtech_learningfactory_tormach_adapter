@@ -2,7 +2,7 @@
 
 An MTConnect Use Case Study at Virginia Tech Learning Factory
 
-Introduction
+###Introduction
 ------
 Partnered with AMT (The Association for Manufacturing Technologies), Virginia Tech’s Learning Factory newest acquisition of a Tormach PCNC-1100 is in need of MTConnect implementation for data extraction and data visualization purposes. In this documentation, a brief overview of every step needed to complete this project will be provided. 
 
