@@ -7,10 +7,10 @@ Introduction
 Partnered with AMT (The Association for Manufacturing Technologies), Virginia Tech’s Learning Factory newest acquisition of a Tormach PCNC-1100 is in need of MTConnect implementation for data extraction and data visualization purposes. In this documentation, a brief overview of every step needed to complete this project will be provided. 
 
 **NOTE: In this case scenario MTConnect Agent Version 1.8.0.3 was installed in a custom PC with the following specs:
-CPU: Intel Xeon E5-2650 
-GPU: Nvidia GTX 690
-RAM: 128GB 
-Storage: 1 TB 
+CPU: Intel Xeon E5-2650__ 
+GPU: Nvidia GTX 690__
+RAM: 128GB__ 
+Storage: 1 TB__ 
 OS: Ubuntu Linux (20.04.1 SMP)** 
 
 # Step-By-Step Guide 
@@ -35,10 +35,11 @@ To develop the adapter, some key functions need to be developed:
 In this phase, we used reference code from other MTConnect adapters to develop Tormach’s. Since the rest key functions remain the same for this case scenario, what needs to be focused on is data fetching and parsing data. However, because the Tormach was inoperable at this time, we imported **simulator.py** into the adapter and then within the adapter, the data parser was developed.
 
 To translate data to the correct standard, the following resources were used:
-* `LinuxCNC library: https://github.com/mtconnect/cppagent/releases?q=1.8.0.3&expanded=true`
+* `LinuxCNC library:` https://github.com/mtconnect/cppagent/releases?q=1.8.0.3&expanded=true
 
-* `MTConnect model: https://model.mtconnect.org/`
+* `MTConnect model:` https://model.mtconnect.org/
 
+Explain what each element signifies
 
 
 Installing MTConnect Agent
@@ -46,10 +47,10 @@ Installing MTConnect Agent
 **NOTE: This project used MTConnect Agent Version 1.8.0.3**
 
 To develop the adapter, some key functions need to be developed:
-* `1) Download MTConnect Agent from https://github.com/mtconnect/cppagent/releases?q=1.8.0.3&expanded=true`
+* `1) Download MTConnect Agent from` https://github.com/mtconnect/cppagent/releases?q=1.8.0.3&expanded=true
 * `2) Extract and move ‘cppagent-1.8.0.3’ folder to Documents`
 * `3) Make a folder called ‘build’ inside ‘‘cppagent-1.8.0.3’ folder`
-* `4)` Open terminal and cd Documents>‘cppagent-1.8.0.3>build and run ‘cmake’`
+* `4) Open terminal and cd Documents>‘cppagent-1.8.0.3>build and run ‘cmake’`
 * `5) Run ‘make’`   
 * `6) Run sudo make install`
 
@@ -59,7 +60,7 @@ Configuring the Agent
 
 ‘Tormach.xml’ serves the purpose of shaping the MTConnect UI to every machine, type and value that is assigned from the Adapter to the Agent. In simple words, it serves as the translator or intermediary between the Adapter and Agent.
 
-Explain how each element signifies
+Explain what each element signifies
 
 ‘agent.cfg’ should be configured to match the port and file path. The following is the header and it is important to specify SchemaVersion to be 1.7 so it matches the XML schema. Port was assigned to 5001 but the default is 5000.
 
@@ -75,31 +76,31 @@ Port = 5001
 
 In this part, the host is the IP address of the machine in use. This port will be important when the MTConnect web UI is being accessed from another computer in the local network.
 
-Adapters {
-   # Log file has all machines with device name prefixed
-    Tormach-PCNC1100
-    {
-      Host = 192.168.1.25
-      Port = 7878
-   } 
-}
+    Adapters {
+       # Log file has all machines with device name prefixed
+        Tormach-PCNC1100
+        {
+          Host = 192.168.1.25
+          Port = 7878
+        } 
+    }
 
 Lastly, this step is important for the agent to work. Since ‘cppagent-1.8.0.3’ folder and ‘Tormach’ folder are both in one folder (‘Documents’), the configuration should be the following:
 
-Files {
-    schemas {
-        Path = ../cppagent-1.8.0.3/schemas
-        Location = /schemas/
+    Files {
+        schemas {
+            Path = ../cppagent-1.8.0.3/schemas
+            Location = /schemas/
+        }
+        styles {
+            Path = ../cppagent-1.8.0.3/styles
+            Location = /styles/
+        }
+        Favicon {
+            Path = ../cppagent-1.8.0.3/styles/favicon.ico
+            Location = /favicon.ico
+        }
     }
-    styles {
-        Path = ../cppagent-1.8.0.3/styles
-        Location = /styles/
-    }
-    Favicon {
-        Path = ../cppagent-1.8.0.3/styles/favicon.ico
-        Location = /favicon.ico
-    }
-}
 
 How to start the Agent
 ------
@@ -107,3 +108,12 @@ How to start the Agent
 * `2) Open a new terminal window and cd Documents/Tormach and run agent run`
 * `3) If accessing from local computer, simply run http://localhost:5000 on the web browser`
 * `4) If accessing from another computer in the same network, run http://{insertIPaddress}:5001`
+
+
+
+
+
+
+
+
+
