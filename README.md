@@ -56,8 +56,8 @@ To develop the adapter, some key functions need to be developed:
 * `2) Extract and move ‘cppagent-1.8.0.3’ folder to Documents`
 * `3) Make a folder called ‘build’ inside ‘‘cppagent-1.8.0.3’ folder`
 * `4) Open terminal and cd Documents>‘cppagent-1.8.0.3>build and run ‘cmake’`
-* `5) Run ‘make’`   
-* `6) Run sudo make install`
+* `5) Run <code>make</code>`   
+* `6) Run <code>sudo make install</code>`
 
 Configuring the Agent
 ------
@@ -69,15 +69,15 @@ Explain what each element signifies
 
 ‘agent.cfg’ should be configured to match the port and file path. The following is the header and it is important to specify SchemaVersion to be 1.7 so it matches the XML schema. Port was assigned to 5001 but the default is 5000.
 
-    Devices = ./Tormach.xml
-    AllowPut = true
-    ReconnectInterval = 1000
-    BufferSize = 17
-    SchemaVersion = 1.7
-    MonitorConfigFiles = true
-    Pretty = true
-    Port = 5001
-    # MinimumConfigReloadAge = 30
+     Devices = ./Tormach.xml
+     AllowPut = true
+     ReconnectInterval = 1000
+     BufferSize = 17
+     SchemaVersion = 1.7
+     MonitorConfigFiles = true
+     Pretty = true
+     Port = 5001
+     # MinimumConfigReloadAge = 30
 
 In this part, the host is the IP address of the machine in use. This port will be important when the MTConnect web UI is being accessed from another computer in the local network.
 
@@ -110,7 +110,7 @@ Lastly, this step is important for the agent to work. Since ‘cppagent-1.8.0.3�
 How to start the Agent
 ------
 * `1) Open terminal and run Tormach_adapter.py script.`
-* `2) Open a new terminal window and cd Documents/Tormach and run agent run`
+* `2) Open a new terminal window and cd Documents/Tormach and run <code>agent run</code>`
 * `3) If accessing from local computer, simply run http://localhost:5000 on the web browser`
 * `4) If accessing from another computer in the same network, run http://{insertIPaddress}:5001`
 
