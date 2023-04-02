@@ -6,12 +6,12 @@ Introduction
 ------
 Partnered with AMT (The Association for Manufacturing Technologies), Virginia Tech’s Learning Factory newest acquisition of a Tormach PCNC-1100 is in need of MTConnect implementation for data extraction and data visualization purposes. In this documentation, a brief overview of every step needed to complete this project will be provided. 
 
-**NOTE: In this case scenario MTConnect Agent Version 1.8.0.3 was installed in a custom PC with the following specs:
-CPU: Intel Xeon E5-2650__ 
-GPU: Nvidia GTX 690__
-RAM: 128GB__ 
-Storage: 1 TB__ 
-OS: Ubuntu Linux (20.04.1 SMP)** 
+**NOTE: In this case scenario MTConnect Agent Version 1.8.0.3 was installed in a custom PC with the following specs:**
+CPU: Intel Xeon E5-2650 
+GPU: Nvidia GTX 690
+RAM: 128GB
+Storage: 1 TB
+OS: Ubuntu Linux (20.04.1 SMP)
 
 # Step-By-Step Guide 
  
