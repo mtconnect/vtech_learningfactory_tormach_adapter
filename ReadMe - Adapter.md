@@ -80,11 +80,11 @@ To translate data to the correct standard, the following resources were used:
 
 To develop the agent, some key functions need to be developed:
 
-* `1) Download MTConnect Agent from` https://github.com/mtconnect/cppagent/releases?q=1.8.0.3&expanded=true
-* `2) Extract and move ‘cppagent-1.8.0.3’ folder to Documents`
-* `3) Make a folder called ‘build’ inside ‘cppagent-1.8.0.3’ folder`
-* `4) Open terminal and cd Documents>cppagent-1.8.0.3>build and run 'cmake'`
-* `5) Run 'make'`
+1) Download MTConnect Agent from https://github.com/mtconnect/cppagent/releases?q=1.8.0.3&expanded=true
+2) Extract and move ‘cppagent-1.8.0.3’ folder to Documents
+3) Make a folder called ‘build’ inside ‘cppagent-1.8.0.3’ folder
+4) Open terminal and cd Documents>cppagent-1.8.0.3>build and run 'cmake'
+5) Run 'make'
 
 * `6) Run 'sudo make install'`
 
