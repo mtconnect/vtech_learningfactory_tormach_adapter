@@ -1,8 +1,9 @@
+import sys
 import threading
 import time 
 import socket
-import sys
 import datetime
+sys.path.append('/Users/santiagosun/Documents/GitHub/vt_learningFactory_tormach_adapter/Simulator')
 from simulator import dataSimulator
 
 client_counter = 0
