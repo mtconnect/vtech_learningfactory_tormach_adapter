@@ -78,7 +78,7 @@ To translate data to the correct standard, the following resources were used:
 
   
 
-To develop the agent, some key functions need to be developed:
+The following steps can be followed to download and install the MTConnect Agent:
 
 1) Download MTConnect Agent from https://github.com/mtconnect/cppagent/releases?q=1.8.0.3&expanded=true
 2) Extract and move ‘cppagent-1.8.0.3’ folder to Documents
