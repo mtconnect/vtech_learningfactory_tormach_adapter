@@ -3,11 +3,10 @@
   
 ## Introduction
 
-*Please review ReadMe.md before this file for context.*
+*Please review ReadMe.md in this project's root directory before this file for context.*
 
 Partnered with The Association for Manufacturing Technologies (AMT), a team of undergraduate students in the Virginia Tech Learning Factory set out to develop an MTConnect adapter for the Tormach PCNC-1100 milling center. In this documentation, a brief overview of every step needed to complete this project will be provided.
 
-  
 
 **NOTE: In this specific environment, the MTConnect Agent Version 1.8.0.3 was installed in a custom PC with the following specs:**
 - CPU: Intel Xeon E5-2650
@@ -18,23 +17,26 @@ Partnered with The Association for Manufacturing Technologies (AMT), a team of u
 
   
 
-# Installation and Usage Guide
+## Installation and Usage Guide
 
 These steps will provide both context on the MTConnect Agent and a guide to installing and using the Tormach PCNC-1100 MTConnect Adapter. **Please note that because the development team was not provided with and could not procure an operational Tormach milling center, this project was built on a simulated milling machine based on paper research.  Compatibility with real hardware is expected, but may require some additional configuration.** For more information on the MTConnect standard and MTConnect Agent, please see [MTConnect's official documentation](https://www.mtconnect.org/documents).
 
-## Data Extraction
+---
+### Data Extraction
 
 First step is to figure out if the targeted device machine is able to output data. Every machine in the industry has different ways of outputting data and different formatted data as well. Tormach's way of extracting data involves the PathPilot GUI program that controls the machine during production times. This program contains various Python script files and in one of the files (named Tormach_mill_ui.py), a modification was made to call the function to output Tormach’s data dictionary. Also, it is important to note that Tormach’s operating system is Linux and the dictionary is based of linuxCNC.
 
   
 
-## Data Simulation
+---
+### Data Simulation
 
 Due to unforeseen circumstances, the Tormach was not functioning properly even after finishing the project, so a simulated data script was developed instead. Using the same outputted dictionary from the Data Extraction section, the script was designed to be as close as possible to an actual Tormach outputted dictionary values. The position and rotational values were also smoothed to simulate a real scenario as much as possible.
 
   
 
-## Developing the Adapter
+---
+### Developing the Adapter
 
 To develop the adapter, some key functions need to be developed:
 
@@ -67,7 +69,8 @@ To translate data to the correct standard, the following resources were used:
   
   
 
-## Installing the MTConnect Agent
+---
+### Installing the MTConnect Agent
 
 **NOTE: This project used MTConnect Agent Version 1.8.0.3**
 
@@ -84,7 +87,8 @@ The following steps can be followed to download and install the MTConnect Agent:
 
   
 
-## Configuring the Agent
+---
+### Configuring the Agent
 
 **Before configuring the Agent, create a new folder called ‘Tormach’ in the Documents folder. Inside ‘Tormach’ the XML schema called ‘Tormach.xml’ and ‘agent.cfg’ will be stored.**
 
@@ -145,11 +149,10 @@ Lastly, this step is important for the agent to work. Since ‘cppagent-1.8.0.3�
 
 
 
-## How to start the Agent
+---
+### How to start the Agent
 
 1) Open terminal and run Tormach_adapter.py script.
-
 2) Open a new terminal window and cd Documents/Tormach and run 'agent run'
-
 3) If accessing from local computer, simply run http://localhost:5001 on the web browser`
 4) If accessing from another computer in the same network, run http://{insertIPaddress}:5001
