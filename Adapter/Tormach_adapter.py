@@ -3,7 +3,14 @@ import threading
 import time 
 import socket
 import datetime
-sys.path.append('/Users/santiagosun/Documents/GitHub/vt_learningFactory_tormach_adapter/Simulator')
+from pathlib import Path
+
+# Import simulator.py into this script
+p1 = Path(__file__)
+p1 = p1.parent.parent.absolute()
+p1str = str(p1)
+print(p1str + '/Simulator')
+sys.path.append(p1str + '/Simulator')
 from simulator import dataSimulator
 
 client_counter = 0
