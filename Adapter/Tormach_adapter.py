@@ -1,8 +1,16 @@
+import sys
 import threading
 import time 
 import socket
-import sys
 import datetime
+from pathlib import Path
+
+# Import simulator.py into this script
+p1 = Path(__file__)
+p1 = p1.parent.parent.absolute()
+p1str = str(p1)
+print(p1str + '/Simulator')
+sys.path.append(p1str + '/Simulator')
 from simulator import dataSimulator
 
 client_counter = 0

@@ -1,11 +1,6 @@
 # VT Learning Factory's Tormach PCNC-1100 Adapter
 
   
-
-A 2023 MTConnect Use Case Study at Virginia Tech Learning Factory
-
-  
-
 ## Introduction
 
 *Please review ReadMe.md before this file for context.*
