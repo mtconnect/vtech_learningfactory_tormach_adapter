@@ -85,8 +85,7 @@ To develop the agent, some key functions need to be developed:
 3) Make a folder called ‘build’ inside ‘cppagent-1.8.0.3’ folder
 4) Open terminal and cd Documents>cppagent-1.8.0.3>build and run 'cmake'
 5) Run 'make'
-
-* `6) Run 'sudo make install'`
+6) Run 'sudo make install'
 
   
 
