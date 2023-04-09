@@ -12,4 +12,4 @@ The work on this project can be divided into discrete components, **each with it
 
 This project was built to comply with MTConnect version 1.8; for more information on the MTConnect standard and MTConnect Agent, please see [MTConnect's official documentation](https://www.mtconnect.org/documents).
 
-Each component is covered in more detail in its own Readme file, i.e. `ReadMe - Database Link.md`.
+Each component is covered in more detail in its own Readme file, i.e. `$/Dashboard/ReadMe.md`.
