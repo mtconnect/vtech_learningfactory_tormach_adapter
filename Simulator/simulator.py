@@ -32,9 +32,10 @@ class dataSimulator:
             # execution state (exec_state_state in linuxcnc)- integer (0 to 7)
             if dataKey == 'exec_state':
                 self.data[dataKey] = random.randint(0, 8)
-            # machine availability (task_state in linuxcnc) - 1, 2, 3 & 4
+            # machine availability (task_state in linuxcnc) - 0 through 99. 
+            # In Adapter, use this to generate a weighted random, e.g. Available for 0-97, Unavailable otherwise. Unavailable records will skip all other fields and store null data.
             if dataKey == 'task_state':
-                self.data[dataKey] = random.randint(0, 3)
+                self.data[dataKey] = random.randint(0, 99)
             # controller mode (task_mode in linuxcnc) - 1, 2 & 3
             if dataKey == 'task_mode':
                 self.data[dataKey] = random.randint(0, 2)

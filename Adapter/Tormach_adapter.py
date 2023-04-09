@@ -1,6 +1,6 @@
 import sys
 import threading
-import time 
+import time
 import socket
 import datetime
 from pathlib import Path
@@ -9,8 +9,8 @@ from pathlib import Path
 p1 = Path(__file__)
 p1 = p1.parent.parent.absolute()
 p1str = str(p1)
-print(p1str + '/Simulator')
-sys.path.append(p1str + '/Simulator')
+print(p1str + "/Simulator")
+sys.path.append(p1str + "/Simulator")
 from simulator import dataSimulator
 
 client_counter = 0
@@ -21,7 +21,7 @@ event = threading.Event()
 event.set()
 
 """Creating Socket Objects"""
-HOST = '0.0.0.0'
+HOST = "0.0.0.0"
 PORT = 7878
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -31,13 +31,14 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 try:
     s.bind((HOST, PORT))
 except socket.error as msg:
-    print ('Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
+    print("Bind failed. Error Code : " + str(msg[0]) + " Message " + msg[1])
     sys.exit()
 
 """Start Listening to Socket for Clients"""
 s.listen(5)
 
 """Function to Clear Out Threads List Once All Threads are Empty"""
+
 
 def thread_list_empty():
     global client_list, client_counter
@@ -59,10 +60,10 @@ def fetch_from_Tormach():
     # Parser begins here
     sim = dataSimulator()
 
-    XabsPrevious = "novalue" 
-    YabsPrevious = "novalue" 
+    XabsPrevious = "novalue"
+    YabsPrevious = "novalue"
     ZabsPrevious = "novalue"
-    SrpmPrevious = "novalue" 
+    SrpmPrevious = "novalue"
     estopPrevious = "novalue"
     executionPrevious = "novalue"
     machineAvailPrevious = "novalue"
@@ -72,134 +73,126 @@ def fetch_from_Tormach():
         updated = False
         try:
             result = sim.getData()
-            for dataKey in result.keys():
-                if dataKey == 'estop':
-                    estop = str(result[dataKey])
-                    if estop == "0":
-                        estop = "ARMED"
-                    if estop == "1":
-                        estop = "TRIGGERED"
-                
-                if dataKey == 'exec_state':
-                    execution = str(result[dataKey])
-                    if execution == "0":
-                        execution = "READY"
-                    elif execution == "1":
-                        execution = "ACTIVE" #"PROGRAM_COMPLETED"
-                    elif execution == "2":
-                        execution = "INTERRUPTED" #"READY", 
-                    elif execution == "3":
-                        execution = "WAIT"
-                    elif execution == "4":
-                        execution = "FEED_HOLD"
-                    elif execution == "5":
-                        execution = "STOPPED"
-                    elif execution == "6":
-                        execution = "OPTIONAL_STOP"
-                    elif execution == "7":
-                        execution = "PROGRAM_STOPPED"
-                    else:
-                        execution = "PROGRAM_COMPLETED"
 
-                if dataKey == 'task_state':
-                    machineAvail = str(result[dataKey])
-                    if machineAvail == "0":
-                        machineAvail = "AVAILABLE"
-                    if machineAvail == "1":
-                        machineAvail = "AVAILABLE"
-                    if machineAvail == "2":
-                        machineAvail = "AVAILABLE"
-                    if machineAvail == "3":
-                        machineAvail = "UNAVAILABLE"
+            if "task_state" in result.keys():
+                machineAvail = str(result["task_state"])
+                if machineAvail < 2:  # 2% chance
+                    machineAvail = "UNAVAILABLE"
+                else:
+                    machineAvail = "AVAILABLE"
 
-                if dataKey == 'task_mode':
-                    controllerMode = str(result[dataKey])
-                    if controllerMode == "0":
-                        controllerMode = "MANUAL_DATA_INPUT"
-                    if controllerMode == "1":
-                        controllerMode = "AUTOMATIC"
-                    if controllerMode == "2":
-                        controllerMode = "MANUAL"
+            if "estop" in result.keys():
+                estop = str(result["estop"])
+                if estop == "0":
+                    estop = "ARMED"
+                if estop == "1":
+                    estop = "TRIGGERED"
 
-                if dataKey == 'axis':
-                    Xabs = str(result[dataKey][0]['output'])
+            if "exec_state" in result.keys():
+                execution = str(result["exec_state"])
+                if execution == "0":
+                    execution = "READY"
+                elif execution == "1":
+                    execution = "ACTIVE"  # "PROGRAM_COMPLETED"
+                elif execution == "2":
+                    execution = "INTERRUPTED"  # "READY",
+                elif execution == "3":
+                    execution = "WAIT"
+                elif execution == "4":
+                    execution = "FEED_HOLD"
+                elif execution == "5":
+                    execution = "STOPPED"
+                elif execution == "6":
+                    execution = "OPTIONAL_STOP"
+                elif execution == "7":
+                    execution = "PROGRAM_STOPPED"
+                else:
+                    execution = "PROGRAM_COMPLETED"
 
-                if dataKey == 'axis':
-                    Yabs = str(result[dataKey][1]['output'])
+            if "task_mode" in result.keys():
+                controllerMode = str(result["task_mode"])
+                if controllerMode == "0":
+                    controllerMode = "MANUAL_DATA_INPUT"
+                if controllerMode == "1":
+                    controllerMode = "AUTOMATIC"
+                if controllerMode == "2":
+                    controllerMode = "MANUAL"
 
-                if dataKey == 'axis':
-                    Zabs = str(result[dataKey][2]['output'])
+            if "axis" in result.keys():
+                Xabs = str(result["axis"][0]["output"])
+                Yabs = str(result["axis"][1]["output"])
+                Zabs = str(result["axis"][2]["output"])
+                Srpm = str(result["axis"][3]["velocity"])
 
-                if dataKey == 'axis':
-                    Srpm = str(result[dataKey][3]['velocity'])
-            outString =""
+            outString = ""
 
             # Xabs
             if Xabs != XabsPrevious:
                 print(Xabs)
-                outString += "|Xabs|"+Xabs
+                outString += "|Xabs|" + Xabs
                 XabsPrevious = Xabs
             print("Xabs: " + Xabs)
 
             # Yabs
             if Yabs != YabsPrevious:
                 print(Yabs)
-                outString += "|Yabs|"+Yabs
+                outString += "|Yabs|" + Yabs
                 YabsPrevious = Yabs
             print("Yabs: " + Yabs)
 
             # Zabs
             if Zabs != ZabsPrevious:
                 print(Zabs)
-                outString += "|Zabs|"+Zabs
+                outString += "|Zabs|" + Zabs
                 ZabsPrevious = Zabs
             print("Zabs: " + Zabs)
 
             # Srpm
             if Srpm != SrpmPrevious:
                 print(Srpm)
-                outString += "|Srpm|"+Srpm
+                outString += "|Srpm|" + Srpm
                 SrpmPrevious = Srpm
             print("Srpm: " + Srpm)
 
             # estop
             if estop != estopPrevious:
                 print(estop)
-                outString += "|estop|"+estop
+                outString += "|estop|" + estop
                 estopPrevious = estop
             print("estop: " + estop)
 
             # execution
             if execution != executionPrevious:
                 print(execution)
-                outString += "|execution|"+execution
+                outString += "|execution|" + execution
                 executionPrevious = execution
             print("execution: " + execution)
 
             # machine availability
             if machineAvail != machineAvailPrevious:
                 print(machineAvail)
-                outString += "|machineAvail|"+machineAvail
+                outString += "|machineAvail|" + machineAvail
                 machineAvailPrevious = machineAvail
             print("machineAvail: " + machineAvail)
 
             # controller mode
             if controllerMode != controllerModePrevious:
                 print(controllerMode)
-                outString += "|controllerMode|"+controllerMode
+                outString += "|controllerMode|" + controllerMode
                 controllerModePrevious = controllerMode
-            print("controllerMode: " + controllerMode)   
-    # Parser ends here
-    
+            print("controllerMode: " + controllerMode)
+            # Parser ends here
+
             # Final data purge
-            combined_output = '\r\n' + datetime.datetime.now().isoformat() + 'Z' + outString
-            print("---",combined_output)
+            combined_output = (
+                "\r\n" + datetime.datetime.now().isoformat() + "Z" + outString
+            )
+            print("---", combined_output)
             time.sleep(0.6)
         except Exception as ex:
             print("Failed fetching values from machine: ")
             print(ex)
             time.sleep(2)
-
 
 
 """Main Thread Class For Clients"""
@@ -218,10 +211,10 @@ class NewClientThread(threading.Thread):
         global lock
         while True:
             try:
-                #print("Sending data to Client {} in {}".format(self.client_ip, self.getName()))
+                # print("Sending data to Client {} in {}".format(self.client_ip, self.getName()))
                 out = combined_output
                 print("OUT1:")
-                print("OUT: "+ out)
+                print("OUT: " + out)
                 self.connection_object.sendall(out.encode())
                 time.sleep(0.5)
 
@@ -249,7 +242,6 @@ while event.is_set():
 
     if first_run_flag == 1:
         print("Listening to Port: %d...." % PORT)
-
 
     try:
         conn, addr = s.accept()
