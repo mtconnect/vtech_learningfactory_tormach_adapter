@@ -1,10 +1,10 @@
-from pymongo import MongoClient
-import requests
 from xml.etree import ElementTree
 from collections import defaultdict
 import time
 import json
 import random
+import requests
+from pymongo import MongoClient
 
 # Set this variable to the URL of your MTConnect Agent server. Be sure to use the /current endpoint.
 MTCONNECT_URL = "http://localhost:5001/current"
