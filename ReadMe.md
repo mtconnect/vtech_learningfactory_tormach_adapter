@@ -4,7 +4,7 @@ Digitization and data sciences can be intimidating fields, and adapting legacy i
 
 ## Browsing this Repository
 
-The work on this project can be divided into discrete components:
+The work on this project can be divided into discrete components, **each with its own folder and Readme file**:
 1. The **Simulator**: A script to simulate a Tormach PCNC-1100 milling center's internal operating data, as the team was not provided or able to procure an operational Tormach mill during the seven-month duration of the project
 2. The MTConnect **Adapter** developed for the simulated Tormach PCNC-1100, which should be compatible with a real, operational instance of the machine
 3. The **Database Link**, a Python script to periodically collect data from any deployment of the MTConnect Agent and store data records to a time-series MongoDB database collection
@@ -12,4 +12,4 @@ The work on this project can be divided into discrete components:
 
 This project was built to comply with MTConnect version 1.8; for more information on the MTConnect standard and MTConnect Agent, please see [MTConnect's official documentation](https://www.mtconnect.org/documents).
 
-Each component is covered in more detail in its own Readme file, i.e. `ReadMe - Database Link.md`.
+Each component is covered in more detail in its own Readme file, i.e. `$/Dashboard/ReadMe.md`.
