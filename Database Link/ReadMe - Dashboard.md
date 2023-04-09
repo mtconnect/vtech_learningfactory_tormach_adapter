@@ -54,5 +54,33 @@ In the Dashboard's **third column**, we finally have display panels focused on a
 
 The top panel displays a line graph of spindle speed (standardized by MTConnect as Rotational Velocity) over a preceding period for a Tormach milling center.  This proof-of-concept simply **demonstrates how any time-series integer value in the MTConnect data standard can easily be visualized in Grafana from MongoDB**.
 
-The second panel displays a **real-time readout for a non-numeric data item** - in this case, Emergency Stop Status (defined in MTConnect as `EMERGENCY_STOP`).  If you again explore the panel's value mappings, you will see that the panel has been configured to display the value `ARMED` as a bright green readout of `ARMED (READY)` to improve the clarity of the information to less technical users.  Upon a change in the data to `TRIGGERED`, the panel will display this new value in red. Research suggests that this readout could also be linked to physical lights or sirens, allowing for real alarms to be triggered if machine operations trigger a particular threshold - see the Grafana documentation on Alarms for more information.
+The second panel displays a **real-time readout for a non-numeric data item** - in this case, Emergency Stop Status (defined in MTConnect as `EMERGENCY_STOP`).  If you again explore the panel's value mappings, you will see that the panel has been configured to display the value `ARMED` as a bright green readout of "`ARMED (READY)`" to improve the clarity of this information to less technical users.  Upon a change in the data to `TRIGGERED`, the panel will display this new value in red. Research suggests that this readout could also be linked to physical lights or sirens, allowing for real alarms to be triggered if machine operations fall out of a particular range or threshold - see the Grafana documentation on Alarms for more information.
 
+The final panel displays a **history** of the Tormach milling center's **execution state**. This, by default, is limited to the last 120 records, which---when combined with the default 2 second document storage interval from this project's `database_link.py` script---equates to the last minute of history. By editing the panel's data query, you can adjust how far back this panel will search, or aggregate the data to find the percentage of time the machine spent in each execution state over a specific interval of time, such as the last week or month.
+
+## Building Additional Panels
+
+With the basics covered, adding new types of display panels is easy. Try creating a panel to generate a weekly productivity report for one of the machines in your database:
+1. Select "Add New Panel" and choose the Table panel type
+2. Query your database for a particular machine's metadata over a particular lookback interval. Here, we'll query for the Tormach PCNC-1100 over the last 1 week. At one data record per 2 seconds, that equates to the last 302,400 records. We'll access a database named `mtconnect_database` and a collection named `collection_0`, where data has been stored for a machine named `Tormach-PCNC1100`:
+
+		mtconnect_database.collection_0.aggregate([
+			{'$project': {'_id': 0,  'RecordNumber': 1,  'Tormach-PCNC1100.Path.Events': 1}},
+			{'$sort': {'RecordNumber': -1}},
+			{'$limit': 302400},
+			{'$group': {'_id': '$Tormach-PCNC1100.Path.Events.Execution.#text',  'Count': {'$sum': 1}}},
+			{'$project': {'Count': 1,  'Percentage': {'$divide': ['$Count',  3024]}}}
+		])
+
+	This aggregation performs the following steps:
+	1. In order to conserve memory before/during sorting, only the relevant fields are **projected** from the data set (`RecordNumber` and `Tormach-PCNC1100.Path.Events`)
+	2. The records are **sorted** in reverse, in order to find our most recent data
+	3. The records are **limited** to the last 302,400 entries, representing the last week of data. Older entries are ignored and removed from the process.
+	4. The records are **grouped** and returned as a new set of records, where `_id` is a valid Execution State, and `Count` is the number of records in the data set where that Execution State was represented
+	5. Finally, we use another **projection** to calculate a `Percentage` field for each Execution State as a division of each `Count` by the total number of records in the intended subset, divided by 100 in order to represent percentage as a whole number.
+
+3. If all other steps have been implemented correctly, and variable names for database, collection, and machine name in the above query are valid, then you should now see a readout of execution states, the total number of records over the last week matching each state, and a calculated percentage of records matching each state as well. You can use Transform > Organize Fields to order and rename your columns.  This configuration updates automatically, always showing aggregated statistics over the last 168 hours (one week), but you can easily generate aggregate reports for a specific period of time:
+	1. Add a new argument to the Project step at the beginning of the aggregation that returns only records where `MTConnectStreams.Header.@CreationTime` is within a specific range of values
+	2.  Remove the Limit step from the aggregation pipeline, and adjust the division during the final Projection step to account for the total number of records within your desired time period. Again, divide this number by 100 if you wish to represent percentages as whole numbers.
+
+	With these tools, you can quickly build dynamic or static reports for any machine, group of machines, or entire fleet and for any data item in the MTConnect standard.
