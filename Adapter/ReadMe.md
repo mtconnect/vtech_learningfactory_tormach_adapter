@@ -22,52 +22,11 @@ Partnered with The Association for Manufacturing Technologies (AMT), a team of u
 These steps will provide both context on the MTConnect Agent and a guide to installing and using the Tormach PCNC-1100 MTConnect Adapter. **Please note that because the development team was not provided with and could not procure an operational Tormach milling center, this project was built on a simulated milling machine based on paper research.  Compatibility with real hardware is expected, but may require some additional configuration.** For more information on the MTConnect standard and MTConnect Agent, please see [MTConnect's official documentation](https://www.mtconnect.org/documents).
 
 ---
-### Data Extraction
-
-First step is to figure out if the targeted device machine is able to output data. Every machine in the industry has different ways of outputting data and different formatted data as well. Tormach's way of extracting data involves the PathPilot GUI program that controls the machine during production times. This program contains various Python script files and in one of the files (named Tormach_mill_ui.py), a modification was made to call the function to output Tormach’s data dictionary. Also, it is important to note that Tormach’s operating system is Linux and the dictionary is based of linuxCNC.
-
-  
-
----
 ### Data Simulation
 
-Due to unforeseen circumstances, the Tormach was not functioning properly even after finishing the project, so a simulated data script was developed instead. Using the same outputted dictionary from the Data Extraction section, the script was designed to be as close as possible to an actual Tormach outputted dictionary values. The position and rotational values were also smoothed to simulate a real scenario as much as possible.
+Under unforeseen circumstances, the Virginia Tech team was not provided with nor able to procure a functioning Tormach milling center. Instead, a data simulator was built using paper research and software investigations on a non-functioning machine. It was found that the Tormach PCNC-1100's "controller" is an instance of LinuxCNC, running on a fairly standard installation of Linux Mint. The data simulator was built around known LinuxCNC variables, with a Python dictionary schema formatted to represent as closely as possible the data that one would be able to retrieve by listening to LinuxCNC on an open port. Most variables were randomized, though positional and rotational values were smoothed from one instance to the next to add some realism.
 
-  
-
----
-### Developing the Adapter
-
-To develop the adapter, some key functions need to be developed:
-
-* `Socket connectivity` - Creating socket objects, binding local port, and listening to socket.
-
-* `Data fetching` - Collect data from source.
-
-* `Parsing data` - Translating data from source to MTConnect standard.
-
-* `Threading` - Setup threadings.
-
-* `Sending data to Agent` -String outputs in MTConnect standard to Agent.
-
-  
-
-In this phase, we used reference code from other MTConnect adapters to develop Tormach’s. Since the rest key functions remain the same for this case scenario, what needs to be focused on is data fetching and parsing data. However, because the Tormach was inoperable at this time, we imported **simulator.py** into the adapter and then within the adapter, the data parser was developed.
-
-  
-
-To translate data to the correct standard, the following resources were used:
-
-* `LinuxCNC library:` https://github.com/mtconnect/cppagent/releases?q=1.8.0.3&expanded=true
-
-  
-
-* `MTConnect model:` https://model.mtconnect.org/
-
-  
-
-  
-  
+Simulated data is accessed by this Adapter by simply importing and running the data simulator function. However, on a real machine, one would need to check the LinuxCNC configuration files and modify this Adapter to listen to the correct port, while removing the simulator import statement and adjusting the `fetch_from_Tormach` function to account for the new data source. For more context and an example of an MTConnect adapter for another LinuxCNC-based machine, refer to [the MTConnect adapter for the PocketNC milling machine](https://github.com/mtconnect/PocketNC_adapter).
 
 ---
 ### Installing the MTConnect Agent
