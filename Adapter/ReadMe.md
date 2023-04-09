@@ -60,15 +60,15 @@ The following steps can be followed to download and install the MTConnect Agent:
 
   
 
-Devices = ./Tormach.xml
-AllowPut = true
-ReconnectInterval = 1000
-BufferSize = 17
-SchemaVersion = 1.7
-MonitorConfigFiles = true
-Pretty = true
-Port = 5001
-MinimumConfigReloadAge = 30
+	Devices = ./Tormach.xml
+	AllowPut = true
+	ReconnectInterval = 1000
+	BufferSize = 17
+	SchemaVersion = 1.7
+	MonitorConfigFiles = true
+	Pretty = true
+	Port = 5001
+	MinimumConfigReloadAge = 30
 
   
 
