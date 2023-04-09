@@ -10,9 +10,8 @@ import random
 MTCONNECT_URL = "http://localhost:5001/current"
 
 # Get these variables from your Atlas portal for the cluster you want to use
-# TODO: Improve documentation for getting connection string from Atlas
 ATLAS_USERNAME = "SD_Team"
-ATLAS_PASSWORD = "ISESD2"
+ATLAS_PASSWORD = "ISE2023"
 MONGODB_CONNECTION_STRING = f"mongodb+srv://{ATLAS_USERNAME}:{ATLAS_PASSWORD}@firstcluster.u1xe7sf.mongodb.net/?retryWrites=true&w=majority"
 
 # Change these variables to create and use a new database or collection
