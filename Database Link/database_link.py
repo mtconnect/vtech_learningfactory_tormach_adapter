@@ -16,7 +16,7 @@ MONGODB_CONNECTION_STRING = f"mongodb+srv://{ATLAS_USERNAME}:{ATLAS_PASSWORD}@fi
 
 # Change these variables to create and use a new database or collection
 MONGODB_DATABASE_NAME = "dashboard_data"
-MONGODB_COLLECTION_NAME = "collection_8"
+MONGODB_COLLECTION_NAME = "collection_11"
 
 # Set this variable to the number of seconds between stored records.
 # Ensure this is at least 2x the frequency of any dashboard updates!
@@ -100,7 +100,7 @@ while True:
         # Check availability for Charts display
         if (device_name != "Agent") and device["Device"]["Events"]["Availability"][
             "#text"
-        ] in ["STATE_ON"]:
+        ] in ["AVAILABLE"]:
             available_machines += 1
 
         # Check activity for Charts display
@@ -129,8 +129,8 @@ while True:
         }
         rand1 = random.random()
         rand2 = random.random()
-        if rand1 < 0.97:
-            device["Device"]["Events"]["Availability"]["#text"] = "STATE_ON"
+        if rand1 < 0.98:
+            device["Device"]["Events"]["Availability"]["#text"] = "AVAILABLE"
             available_machines += 1
             if rand2 < 0.85:
                 device["Path"]["Events"]["Execution"]["#text"] = "ACTIVE"
@@ -151,14 +151,8 @@ while True:
                 device["Path"]["Events"]["Execution"]["#text"] = "PROGRAM_STOPPED"
             else:
                 device["Path"]["Events"]["Execution"]["#text"] = "PROGRAM_COMPLETED"
-        elif rand1 < 0.98:
-            device["Device"]["Events"]["Availability"]["#text"] = "STATE_OFF"
-            device["Path"]["Events"]["Execution"]["#text"] = "STOPPED"
-        elif rand1 < 0.99:
-            device["Device"]["Events"]["Availability"]["#text"] = "STATE_ESTOP"
-            device["Path"]["Events"]["Execution"]["#text"] = "INTERRUPTED"
         else:
-            device["Device"]["Events"]["Availability"]["#text"] = "STATE_ESTOP_RESET"
+            device["Device"]["Events"]["Availability"]["#text"] = "UNAVAILABLE"
             device["Path"]["Events"]["Execution"]["#text"] = "STOPPED"
 
         record[device_name] = device

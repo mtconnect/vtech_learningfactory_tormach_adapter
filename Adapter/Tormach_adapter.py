@@ -75,18 +75,18 @@ def fetch_from_Tormach():
             result = sim.getData()
 
             if "task_state" in result.keys():
-                machineAvail = str(result["task_state"])
+                machineAvail = result["task_state"]
                 if machineAvail < 2:  # 2% chance
                     machineAvail = "UNAVAILABLE"
                 else:
                     machineAvail = "AVAILABLE"
 
             if "estop" in result.keys():
-                estop = str(result["estop"])
-                if estop == "0":
-                    estop = "ARMED"
-                if estop == "1":
+                estop = result["estop"]
+                if estop < 1:
                     estop = "TRIGGERED"
+                else:
+                    estop = "ARMED"
 
             if "exec_state" in result.keys():
                 execution = str(result["exec_state"])
