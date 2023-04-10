@@ -1120,6 +1120,11 @@ class dataSimulator:
 
         # Generate values for specific keys
 
+        # machine availability - 0 through 99.
+        # This is the only value that is not a mapping from LinuxCNC, but rather a representation of the machine's connection to the Agent.
+        # In Adapter, use this to generate a weighted random, e.g. Available for 0-97, Unavailable otherwise. Unavailable records will skip all other fields and store null data.
+        self.data["availability"] = random.randint(0, 99)
+
         # emergency stop (estop in linuxcnc)- integer (0 to 1)
         if "estop" in self.data.keys():
             self.data["estop"] = random.randint(
@@ -1128,10 +1133,7 @@ class dataSimulator:
         # execution state (exec_state_state in linuxcnc)- integer (0 to 7)
         if "exec_state" in self.data.keys():
             self.data["exec_state"] = random.randint(0, 8)
-        # machine availability (task_state in linuxcnc) - 0 through 99.
-        # In Adapter, use this to generate a weighted random, e.g. Available for 0-97, Unavailable otherwise. Unavailable records will skip all other fields and store null data.
-        if "task_state" in self.data.keys():
-            self.data["task_state"] = random.randint(0, 99)
+
         # controller mode (task_mode in linuxcnc) - 1, 2 & 3
         if "task_mode" in self.data.keys():
             self.data["task_mode"] = random.randint(0, 2)

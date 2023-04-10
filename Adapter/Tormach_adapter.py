@@ -74,8 +74,9 @@ def fetch_from_Tormach():
         try:
             result = sim.getData()
 
-            if "task_state" in result.keys():
-                machineAvail = result["task_state"]
+            # This is not from LinuxCNC and is for simulated data only - remove if using real machine
+            if "availability" in result.keys():
+                machineAvail = result["availability"]
                 if machineAvail < 2:  # 2% chance
                     machineAvail = "UNAVAILABLE"
                 else:
