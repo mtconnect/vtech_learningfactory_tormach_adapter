@@ -1119,39 +1119,36 @@ class dataSimulator:
     def _update_data(self):
 
         # Generate values for specific keys
-        for dataKey in self.data:
-            # emergency stop (estop in linuxcnc)- integer (0 to 1)
-            if dataKey == "estop":
-                self.data[dataKey] = random.randint(
-                    0, 4
-                )  # Allow for one in 5 chance of estop trigger
-            # execution state (exec_state_state in linuxcnc)- integer (0 to 7)
-            if dataKey == "exec_state":
-                self.data[dataKey] = random.randint(0, 8)
-            # machine availability (task_state in linuxcnc) - 0 through 99.
-            # In Adapter, use this to generate a weighted random, e.g. Available for 0-97, Unavailable otherwise. Unavailable records will skip all other fields and store null data.
-            if dataKey == "task_state":
-                self.data[dataKey] = random.randint(0, 99)
-            # controller mode (task_mode in linuxcnc) - 1, 2 & 3
-            if dataKey == "task_mode":
-                self.data[dataKey] = random.randint(0, 2)
 
+        # emergency stop (estop in linuxcnc)- integer (0 to 1)
+        if "estop" in self.data.keys():
+            self.data["estop"] = random.randint(
+                0, 4
+            )  # Allow for one in 5 chance of estop trigger
+        # execution state (exec_state_state in linuxcnc)- integer (0 to 7)
+        if "exec_state" in self.data.keys():
+            self.data["exec_state"] = random.randint(0, 8)
+        # machine availability (task_state in linuxcnc) - 0 through 99.
+        # In Adapter, use this to generate a weighted random, e.g. Available for 0-97, Unavailable otherwise. Unavailable records will skip all other fields and store null data.
+        if "task_state" in self.data.keys():
+            self.data["task_state"] = random.randint(0, 99)
+        # controller mode (task_mode in linuxcnc) - 1, 2 & 3
+        if "task_mode" in self.data.keys():
+            self.data["task_mode"] = random.randint(0, 2)
+
+        if "axis" in self.data.keys():
             # absolute X-axis position (output in linuxcnc) - float / max is 457mm (Tormach website)
-            if dataKey == "axis":
-                smoothOutput1 = round(random.uniform(-1.0, 1.0), 1)
-                self.data[dataKey][0]["output"] = output1 + smoothOutput1
+            smoothOutput1 = round(random.uniform(-1.0, 1.0), 1)
+            self.data["axis"][0]["output"] = output1 + smoothOutput1
             # absolute Y-axis position (output in linuxcnc) - float / max is 279mm (Tormach website)
-            if dataKey == "axis":
-                smoothOutput2 = round(random.uniform(-1.0, 1.0), 1)
-                self.data[dataKey][1]["output"] = output2 + smoothOutput2
+            smoothOutput2 = round(random.uniform(-1.0, 1.0), 1)
+            self.data["axis"][1]["output"] = output2 + smoothOutput2
             # absolute Z-axis position (output in linuxcnc) - float / max is 413mm (Tormach website)
-            if dataKey == "axis":
-                smoothOutput3 = round(random.uniform(-1.0, 1.0), 1)
-                self.data[dataKey][2]["output"] = output3 + smoothOutput3
+            smoothOutput3 = round(random.uniform(-1.0, 1.0), 1)
+            self.data["axis"][2]["output"] = output3 + smoothOutput3
             # C-axis rotary velocity (output in linuxcnc) - float/max is 7500RPM (Tormach website)
-            if dataKey == "axis":
-                smoothVelocity = round(random.uniform(-1.0, 1.0), 1)
-                self.data[dataKey][3]["velocity"] = Srpm + smoothVelocity
+            smoothVelocity = round(random.uniform(-1.0, 1.0), 1)
+            self.data["axis"][3]["velocity"] = Srpm + smoothVelocity
 
     # Print the updated dictionary
     # print(self.data)
