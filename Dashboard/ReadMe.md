@@ -25,7 +25,10 @@ Next, **connect your MongoDB collection** by searching connections for MongoDB; 
 
 Now we can **deploy the dashboard from the json model.** Go back to the Home page of the Grafana Cloud web app, and navigate to Dashboards > All Dashboards > New (drop down selection) > Import.  Here, you can upload the `grafanaModel.json` file found in this project. Rename the dashboard and change the folder if desired, then click Import to confirm. You should immediately see a dashboard of empty panels, with no data.
 
-To **get the first panel working**, select the panel title in the top left and then Edit. Change the data source to MongoDB, and then in the grafanaModel json file, locate the string stored at `$.panels[0].targets[0].query`. Copy this query string into Grafana, and change the database and collection names to match your MongoDB instance. If your collection contains valid data, you should immediately see the gauge render a valid output at some percentage.
+The very **first thing** we need to do with this empty dashboard is to **configure our dashboard variables.** Go to Dashboard Settings > Variables, and you should see two variables called `database_name` and `collection_name`. These values are referenced in every pre-configured panel query so that the entire dashboard can be pointed to a new data source at any time. Set these values to the names of the MongoDB database and collection that `database_link.py` is storing records in.
+  
+
+Next, to **get the first panel working**, select the panel title in the top left and then Edit. Change the data source to MongoDB, and then in the grafanaModel json file, locate the string stored at `$.panels[0].targets[0].query`. Copy this query string into Grafana; you should notice that the database name and collection name in the query are parameterized, and will automatically reference the variables we just created in the last step. If your collection contains valid data, you should immediately see the gauge render a valid output at some percentage.
 
 To **connect all other panels**, navigate to Dashboard Settings > JSON Model. Note the `datasource` data now stored at `$.panels[0].datasource`. It should show:
 
