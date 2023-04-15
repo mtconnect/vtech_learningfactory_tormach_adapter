@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectDevices xmlns="urn:mtconnect.org:MTConnectDevices:1.7" xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="urn:mtconnect.org:MTConnectDevices:1.7 schema/MTConnectDevices_1.7.xsd">
+  <Header version="1.7.0" creationTime="2021-11-9T00:00:00Z" instanceId="1" sender="vt-data-02" bufferSize="131111" assetBufferSize="1000" assetCount="0"/>
+	<Devices>
+		<Device id="d1" uuid="Tormach-PCNC1100" name="Tormach-PCNC1100">
+			<Description>Tormach-PCNC1100</Description>
+			<DataItems>
+				<DataItem category="EVENT" name="machineAvail" type="AVAILABILITY"/>
+				<DataItem category="EVENT" id="functional_mode" name="functional_mode" type="FUNCTIONAL_MODE"/>
+			</DataItems>
+			<Components>
+				<Axes id="a" name="base">
+					<Components>
+						<Linear id="x" name="X">
+							<DataItems>
+								<DataItem type="POSITION" subType="ACTUAL" id="xpm" category="SAMPLE" name="Xabs" units="MILLIMETER" coordinateSystem="MACHINE"/>
+								<!-- <DataItem type="POSITION" subType="ACTUAL" id="xpw" category="SAMPLE" name="Xpos" units="MILLIMETER" coordinateSystem="WORK"/> -->
+							</DataItems>
+						</Linear>
+						<Linear id="y" name="Y">
+							<DataItems>
+								<DataItem type="POSITION" subType="ACTUAL" id="ypm" category="SAMPLE" name="Yabs" units="MILLIMETER" coordinateSystem="MACHINE"/>
+								<!-- <DataItem type="POSITION" subType="ACTUAL" id="ypw" category="SAMPLE" name="Ypos" units="MILLIMETER" coordinateSystem="WORK"/> -->
+							</DataItems>
+						</Linear>
+						<Linear id="z" name="Z">
+							<DataItems>
+								<DataItem type="POSITION" subType="ACTUAL" id="zpm" category="SAMPLE" name="Zabs" units="MILLIMETER" coordinateSystem="MACHINE"/>
+								<!-- <DataItem type="POSITION" subType="ACTUAL" id="zpw" category="SAMPLE" name="Zpos" units="MILLIMETER" coordinateSystem="WORK"/> -->
+							</DataItems>
+						</Linear>
+						<!-- Changes 1 -begins here -->
+						<Rotary id="c" name="C">
+							<DataItems>
+								<DataItem type="ROTARY_VELOCITY" id="cs" category="SAMPLE" name="Srpm" subType="ACTUAL" units="REVOLUTION/MINUTE"/>
+							</DataItems>
+						</Rotary>
+					</Components>	
+				</Axes>	
+					<!-- Changes 1 -ends here -->	
+					<!-- Changes 2 -begins here -->
+				<Controller id="cont" name="controller">
+					<DataItems>
+						<DataItem type="EMERGENCY_STOP" id="estop" category="EVENT" name="estop"/>
+					</DataItems>
+					<Components>
+						<Path id="path1" name="path">
+							<DataItems>
+								<DataItem type="CONTROLLER_MODE" id="mode" category="EVENT" name="controllerMode"/>
+								<DataItem type="EXECUTION" id="exec" category="EVENT" name="execution"/>
+							</DataItems>
+						</Path>
+					</Components>
+				</Controller>
+			</Components>
+		</Device>
+	</Devices>
+</MTConnectDevices>
